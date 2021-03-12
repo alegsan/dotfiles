@@ -1,0 +1,95 @@
+syntax on
+
+set backspace=indent,eol,start
+
+" https://csswizardry.com/2017/03/configuring-git-and-vim/
+" 80 characters line
+set textwidth=80
+
+" in Git commit messages, let’s make it 72 characters
+autocmd FileType gitcommit setl textwidth=72
+
+" colour the 81st (or 73rd) column so that we don’t type over our limit
+set colorcolumn=+1
+
+" In Git commit messages, also colour the 51st column (for titles)
+autocmd FileType gitcommit set colorcolumn+=51
+
+" set color of ColorColumn black to be less obtrusive
+highlight ColorColumn ctermbg=Black ctermfg=DarkRed
+
+" highlight all search matches, yellow background and red foreground
+set hlsearch
+hi Search ctermbg=LightYellow
+hi Search ctermfg=red
+
+" While typing a search command, show immediately where the
+" so far typed pattern matches.
+set incsearch
+
+" Ignore case in search patterns.
+set ignorecase
+
+" Override the 'ignorecase' option if the search pattern
+" contains upper case characters.
+set smartcase
+
+" display line numbers
+set number
+
+" display line numbers relative to the line with the cursorline
+set relativenumber
+
+" highlight the line containing the cursor
+set cursorline
+
+" change color of pop-up-menu. E.g. autocompletion
+highlight Pmenu term=reverse ctermbg=black ctermfg=white
+highlight PmenuSel term=reverse ctermbg=green ctermfg=black
+
+" always display status line
+set laststatus=2
+
+" If your goal is to:
+"
+" 1. highlight trailing whitespace in red
+" 2. have this highlighting not appear whilst you are typing in insert mode
+" 3. have the highlighting of whitespace apply when you open new buffers
+" then the following 6 commands are what you should put into your .vimrc. They are
+" all listed on this page in separate sections, but this is a consolidated list of
+" precisely what you need.
+" highlight ExtraWhitespace Group. E.g. whitspaces after line
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" Show spaces used for indenting (so you use only tabs for indenting).
+autocmd BufWinEnter * 2match ExtraWhitespace /^\t*\zs \+/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+:nnoremap <Leader>wn :2match ExtraWhitespace /^\s* \s*\<Bar>\s\+$/<CR>
+:nnoremap <Leader>wf :2match<CR>
+
+" add yaml stuffs
+autocmd BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+" dont create swap files for files
+set noswapfile
+
+" Copy indent from current line when starting a new line
+" (typing <CR> in Insert mode or when using the "o" or "O"
+" command).
+set autoindent
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+filetype plugin indent on

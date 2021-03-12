@@ -1,0 +1,3 @@
+- sudo:
+  - shell:
+    - [cp gui/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf, Replacing lightdm-gtk-greeter.conf]
