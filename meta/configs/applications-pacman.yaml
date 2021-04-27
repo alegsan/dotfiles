@@ -1,7 +1,3 @@
 - sudo:
   - yay: [xfce4-clipman-plugin]  
   - yay: [gnucash, libdbi-drivers]
-
-- shell:
-  - xfconf-query -c xfce4-panel -p /plugins/clipman/settings/add-primary-clipboard -n -t bool -s true
-  - xfconf-query -c xfce4-panel -p /plugins/clipman/settings/history-ignore-primary-clipboard -n -t bool -s false

@@ -1,0 +1,5 @@
+- shell:
+  - xfconf-query -c xfce4-panel -p /plugins/clipman/settings/add-primary-clipboard -n -t bool -s true
+  - xfconf-query -c xfce4-panel -p /plugins/clipman/settings/history-ignore-primary-clipboard -n -t bool -s false
+  - xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/show-tray-icon -n -t bool -s true
+  - xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/general-notification -n -t bool -s true

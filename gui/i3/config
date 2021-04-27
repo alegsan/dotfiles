@@ -23,17 +23,14 @@
 #################                          Define the $mod variable/key                             #################
 #####################################################################################################################
 
+
 # Key to rule them all : Super(Windows) or Alt key?
 
 # Mod4 = Windows or Super key on keyboard
 # Mod1 = Alt key on keyboard
 
-#Set Alt key
-#set $mod Mod1
-
 #set Super key
 set $mod Mod4
-
 
 
 #####################################################################################################################
@@ -41,18 +38,10 @@ set $mod Mod4
 #####################################################################################################################
 
 
-#This is setup for qwerty
-set $up l
-set $down k
-set $left j
-set $right semicolon
-
-#This is setup for azerty
-#set $up l
-#set $down k
-#set $left j
-#set $right m
-
+set $up k
+set $down j
+set $left h
+set $right l
 
 
 #####################################################################################################################
@@ -402,10 +391,10 @@ assign [class="Thunderbird|Geary|Evolution"]                                    
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Updater
-exec --no-startup-id pamac-tray
+#exec --no-startup-id pamac-tray
 
 # bluetooth
-exec --no-startup-id blueberry-tray
+exec --no-startup-id blueman-applet
 
 # network
 exec --no-startup-id nm-applet
@@ -460,13 +449,13 @@ bindsym control+mod1+e exec --no-startup-id arcolinux-tweak-tool
 bindsym $mod+c exec --no-startup-id xfce4-popup-clipman
 
 # terminal
-bindsym $mod+Return exec --no-startup-id termite;focus
-bindsym $mod+KP_Enter exec --no-startup-id termite;focus
-bindsym control+mod1+t exec --no-startup-id termite; focus
-bindsym control+mod1+Return exec --no-startup-id termite; focus
-bindsym control+mod1+KP_Enter exec --no-startup-id termite; focus
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal;focus
+bindsym $mod+KP_Enter exec --no-startup-id i3-sensible-terminal;focus
+bindsym control+mod1+t exec --no-startup-id i3-sensible-terminal; focus
+bindsym control+mod1+Return exec --no-startup-id i3-sensible-terminal; focus
+bindsym control+mod1+KP_Enter exec --no-startup-id i3-sensible-terminal; focus
 bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
-bindsym $mod+t [class="Termite"] focus
+bindsym $mod+t [class="Gnome-terminal"] focus
 
 #System monitor
 bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus

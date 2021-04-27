@@ -1,6 +1,7 @@
 wall
 lightdm
 applications-pacman
+xfce4-config
 i3
 polybar
 termite
