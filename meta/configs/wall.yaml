@@ -1,3 +1,2 @@
-- sudo:
-  - shell:
-    - [cp gui/walls/wall.jpg /usr/share/backgrounds/wall.jpg, Copy wall.jpg to backgrounds folder]
+- link:
+    ~/.config/wallpaper: gui/walls/grey-hd.jpg

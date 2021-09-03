@@ -1,0 +1,7 @@
+- link:
+    # change some i3-wm properties
+    ~/.config/regolith/Xresources: gui/i3-regolith/Xresources
+    
+- shell:
+  # change theme (active after relogin or by issuing the cmd regolith-look refresh)
+  - regolith-look set ayu-dark
