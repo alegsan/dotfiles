@@ -1,0 +1,8 @@
+- link:
+    ~/.config/regolith/Xresources: gui/regolith/Xresources
+    ~/.config/regolith/i3xrocks/conf.d: gui/regolith/i3xrocks/conf.d
+    ~/.config/wallpaper: gui/walls/wallpaper
+    
+- shell:
+  # change theme (active after relogin or by issuing the cmd regolith-look refresh)
+  - regolith-look set ayu-dark

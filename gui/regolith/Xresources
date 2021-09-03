@@ -7,5 +7,7 @@ i3-wm.program.1:gnome-screensaver
 i3-wm.bar.font:pango:Source Code Pro Medium 11, FontAwesome 11
 i3-wm.font:pango:Source Code Pro Medium 11
 i3xrocks.value.font:Source Code Pro Medium 11
+i3xrocks.memory.display:used
+i3xrocks.memory.percentage:true
 gnome.terminal.font:Source Code Pro 10
 gnome.wallpaper:~/.config/wallpaper
