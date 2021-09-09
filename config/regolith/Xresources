@@ -3,7 +3,10 @@ i3-wm.gaps.smart:inverse_outer
 i3-wm.gaps.inner.size:7
 i3-wm.gaps.outer.size:7
 i3-wm.hide.edge.borders:none
+
 i3-wm.program.1:gnome-screensaver
+i3-wm.program.2:greenclip daemon
+
 i3-wm.bar.font:pango:Source Code Pro Medium 11, FontAwesome 11
 i3-wm.font:pango:Source Code Pro Medium 11
 i3-wm.workspace.01.name:1:
@@ -32,3 +35,5 @@ i3xrocks.memory.percentage:true
 
 gnome.terminal.font:Source Code Pro 10
 gnome.wallpaper:~/.config/wallpaper
+
+rofi.font:Source Code Pro Medium 12

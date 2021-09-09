@@ -1,0 +1,21 @@
+[user]
+	email = oleg.karfich@wago.com
+	name = Oleg Karfich
+[core]
+	editor = vim
+[sendemail]
+	smtpEncryption = off
+	smtpServer = localhost
+	smtpServerPort = 1025
+#	smtpServer = smtp.office365.com
+#	smtpServerPort = 587
+#	smtpencryption= starttls
+	smtpUser = oleg.karfich@wago.com
+	smtp-debug = 1
+	aliasesFile = /home/WAGODOM/u015645/.config/mutt/aliases
+	aliasFileType = mutt
+	confirm = auto
+	from = Oleg Karfich <oleg.karfich@wago.com>
+#	suppresscc = all
+[rebase]
+	instructionFormat = (%an) %s

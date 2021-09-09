@@ -1,7 +1,7 @@
 - sudo:
 
   - link:
-      /etc/apt/sources.list.d/ubuntu-fallback.list: system/ubuntu/20.04/ubuntu-fallback.list
+      /etc/apt/sources.list.d/ubuntu-fallback.list: etc/apt/sources.list.dsystem/ubuntu/20.04/ubuntu-fallback.list
 
   - shell:
     - update-alternatives --install /usr/bin/python python /usr/bin/python2 1
@@ -17,9 +17,21 @@
       evolution:
       evolution-ews:
       tree:
+      flex:
+      bison:
+      lzop:
+      libncurses-dev:
+      xmlstarlet:
+      vim-gtk:
+      u-boot-tools:
 
+      # regolith packages
       regolith-desktop-mobile:
         ppa_source: ppa:regolith-linux/release
       regolith-look-ayu-dark:
       i3xrocks-nm-vpn:
       i3xrocks-memory:
+
+      # wago
+      wago-trace32:
+      wago-devenv-2020.04:
