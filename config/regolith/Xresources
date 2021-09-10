@@ -37,3 +37,4 @@ gnome.terminal.font:Source Code Pro 10
 gnome.wallpaper:~/.config/wallpaper
 
 rofi.font:Source Code Pro Medium 12
+rofi.theme:~/.config/rofi/themes/rofi.rasi
