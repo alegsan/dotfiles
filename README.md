@@ -32,42 +32,67 @@ You can run these installation commands safely multiple times, if you think that
 
 ```
 meta/profiles/
-└── workstation
+├── notebook-home
+└── notebook-work
 ```
 
 ### Dotbot configurations
 
 ```
 meta/configs/
+├── applications-apt.yaml
 ├── applications-pacman.yaml
-├── i3.yaml
-├── lightdm.yaml
-├── picom.yaml
+├── bin.yaml
+├── docker-apt.yaml
+├── git-work.yaml
+├── git.yaml
+├── greenclip.yaml
+├── lauterbach.yaml
 ├── polybar.yaml
-├── termite.yaml
-└── wall.yaml
+├── regolith.yaml
+├── tig.yaml
+└── vim.yaml
 ```
 
 ### Dotfiles
 
 ```
-gui
-├── i3
-│   └── config
-├── lightdm
-│   └── lightdm-gtk-greeter.conf
-├── picom
-│   └── picom.conf
+config/
+├── git
+│   ├── config
+│   └── config-work
 ├── polybar
 │   ├── config
 │   ├── launch.sh
 │   └── scripts
 │       └── popup-calendar.sh
+├── regolith
+│   ├── i3
+│   │   └── config
+│   ├── i3xrocks
+│   │   └── conf.d
+│   │       ├── 01_setup
+│   │       ├── 10_nm-vpn
+│   │       ├── 40_cpu-usage
+│   │       ├── 50_memory
+│   │       ├── 80_battery
+│   │       ├── 80_rofication
+│   │       └── 90_time
+│   ├── Xresources
+│   └── Xresources-regolith
+├── tig
+│   └── config
 └── walls
     ├── grey-hd.jpg
-    └── wall.jpg -> grey-hd.jpg
-
-terminals
-└── termite
-    └── config
+    └── wallpaper -> grey-hd.jpg
+etc/
+└── apt
+    └── sources.list.d
+        └── ubuntu-fallback.list
+local/
+└── bin
+    └── exchange-gateway.sh
+opt/
+└── trace32
+    └── config_usb_proxy.t32
 ```
