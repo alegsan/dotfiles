@@ -12,7 +12,9 @@ PBI=
 USB
 PROXYNAME=testrack-delta2
 PROXYPORT=8455
-NODE=lauterbach1
+;NODE=am335x      ; 8214
+NODE=am35xx      ; 8207
+;NODE=am335x-adv  ; 3301
 
 ;SCREEN settings
 SCREEN=
