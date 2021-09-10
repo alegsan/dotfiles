@@ -1,7 +1,7 @@
 - sudo:
 
   - link:
-      /etc/apt/sources.list.d/ubuntu-fallback.list: etc/apt/sources.list.dsystem/ubuntu/20.04/ubuntu-fallback.list
+      /etc/apt/sources.list.d/ubuntu-fallback.list: etc/apt/sources.list.d/ubuntu-fallback.list
 
   - shell:
     - update-alternatives --install /usr/bin/python python /usr/bin/python2 1
