@@ -26,6 +26,7 @@
       u-boot-tools:
       python3-dev:
       python3-pip:
+      autorandr:
 
       # regolith packages
       regolith-desktop-mobile:
