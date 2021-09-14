@@ -11,4 +11,5 @@ set show-changes = no
 # Optionally, use the old and faster but less acurate graph renderer
 #set main-view-commit-title-graph = v1
 
-#color cursor black green
+# Override the default terminal colors to white on black.
+color cursor		black	greeen
