@@ -5,15 +5,6 @@
 [submodule "meta/plugins/dotbot-sudo.git"]
 	path = meta/plugins/dotbot-sudo.git
 	url = https://github.com/DrDynamic/dotbot-sudo.git
-[submodule "meta/plugins/dotbot-yay.git"]
-	path = meta/plugins/dotbot-yay.git
-	url = https://github.com/oxson/dotbot-yay
-[submodule "editors/vim/pack/tpope/start/vim-sensible.git"]
-	path = editors/vim/pack/tpope/start/vim-sensible.git
-	url = https://github.com/tpope/vim-sensible.git
-[submodule "editors/vim/pack/vim-airline/start/vim-airline.git"]
-	path = editors/vim/pack/vim-airline/start/vim-airline.git
-	url = https://github.com/vim-airline/vim-airline.git
 [submodule "meta/plugins/dotbot-plugin-aptget.git"]
 	path = meta/plugins/dotbot-plugin-aptget.git
 	url = https://github.com/dein0s/dotbot_plugin_aptget.git
