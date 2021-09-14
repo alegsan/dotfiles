@@ -7,7 +7,7 @@ regolith.look: gruvbox
 #include "/etc/regolith/styles/ayu-dark/typeface"
 
 ! -- Styles - Theme
-#include "/etc/regolith/styles/gruvbox/theme"
+#include "/home/wago.local/u015645/.config/regolith/styles/gruvbox/theme"
 
 ! -- Applications
 ! These files map values defined above into specific app settings.
