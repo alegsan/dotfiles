@@ -1,0 +1,16 @@
+- shell:
+    - 
+      command: test -d ~/workspace/git/oh-my-zsh || sh -c "ZSH=~/workspace/git/oh-my-zsh RUNZSH=no KEEP_ZSHRC=yes $(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+      stdout: true
+      stdin: true
+      stderr: true
+
+    - test -d ~/workspace/git/oh-my-zsh/plugins/zsh-autosuggestions || git clone https://github.com/zsh-users/zsh-autosuggestions ~/workspace/git/oh-my-zsh/plugins/zsh-autosuggestions
+    - test -d ~/workspace/git/oh-my-zsh/plugins/zsh-syntax-highlighting || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/workspace/git/oh-my-zsh/plugins/zsh-syntax-highlighting
+
+- link:
+    ~/.zshrc:
+        force: true
+        path: config/zsh/zshrc
+
+    ~/workspace/git/oh-my-zsh/themes/gruvbox.zsh-theme: config/zsh/themes/gruvbox.zsh-theme

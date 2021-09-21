@@ -35,6 +35,7 @@
       virtualenv:
       feh:
       ripgrep:
+      zsh:
 
       # regolith packages
       regolith-desktop-mobile:
