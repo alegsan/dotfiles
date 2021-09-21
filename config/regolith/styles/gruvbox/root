@@ -1,7 +1,7 @@
 regolith.look: gruvbox
 
 ! -- Styles - Colors
-#include "/etc/regolith/styles/gruvbox/color"
+#include "/home/wago.local/u015645/.config/regolith/styles/gruvbox/color"
 
 ! -- Styles - Fonts
 #include "/etc/regolith/styles/ayu-dark/typeface"
