@@ -35,6 +35,7 @@
       virtualenv:
       feh:
       ripgrep:
+      fzf:
       zsh:
 
       # regolith packages
