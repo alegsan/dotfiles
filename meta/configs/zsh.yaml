@@ -14,3 +14,4 @@
         path: config/zsh/zshrc
 
     ~/workspace/git/oh-my-zsh/themes/gruvbox.zsh-theme: config/zsh/themes/gruvbox.zsh-theme
+    ~/workspace/git/oh-my-zsh/custom/aliases.zsh: config/zsh/aliases.zsh
