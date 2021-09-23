@@ -1,7 +1,7 @@
 regolith.look: gruvbox
 
 ! -- Styles - Colors
-#include "/home/wago.local/u015645/.config/regolith/styles/gruvbox/color"
+#include "/etc/regolith/styles/gruvbox/color"
 
 ! -- Styles - Fonts
 #include "/etc/regolith/styles/ayu-dark/typeface"
@@ -12,7 +12,7 @@ regolith.look: gruvbox
 ! -- Applications
 ! These files map values defined above into specific app settings.
 #include "/etc/regolith/styles/gruvbox/st-term"
-#include "/etc/regolith/styles/gruvbox/i3-wm"
+#include "/home/wago.local/u015645/.config/regolith/styles/gruvbox/i3-wm"
 #include "/etc/regolith/styles/i3xrocks"
 #include "/etc/regolith/styles/rofi"
 #include "/etc/regolith/styles/gnome"

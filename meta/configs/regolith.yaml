@@ -7,3 +7,4 @@
       force: true
       path: config/regolith/Xresources-regolith
     ~/.config/wallpaper: config/walls/wallpaper
+    ~/.dircolors: config/dircolors

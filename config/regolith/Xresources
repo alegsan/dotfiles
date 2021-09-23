@@ -3,6 +3,8 @@ i3-wm.gaps.smart:inverse_outer
 i3-wm.gaps.inner.size:7
 i3-wm.gaps.outer.size:7
 i3-wm.hide.edge.borders:none
+i3-wm.floatingwindow.border.size:3
+i3-wm.window.border.size:3
 
 i3-wm.program.1:gnome-screensaver
 i3-wm.program.2:greenclip daemon
