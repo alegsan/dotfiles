@@ -37,4 +37,6 @@ require("config.lsp").setup()
 
 require("config.dap").setup()
 
+require("colorizer").setup()
+
 ----- End loading ----------

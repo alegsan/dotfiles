@@ -94,6 +94,7 @@ function M.setup()
     use { "sainnhe/everforest" }
     use { "folke/lsp-colors.nvim" }
     use { "Shatur/neovim-ayu" }
+    use { "norcalli/nvim-colorizer.lua" }
 
     -- Testing
     use {
