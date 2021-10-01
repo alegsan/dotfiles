@@ -56,6 +56,8 @@ local mappings = {
     n = { "<Cmd>bn<Cr>", "Next buffer" },
     p = { "<Cmd>bp<Cr>", "Previous buffer" },
     f = { "<Cmd>bd!<Cr>", "Force delete current buffer" },
+    s = { "<Cmd>BufferLinePick<Cr>", "Pick buffer" },
+    c = { "<Cmd>BufferLinePickClose<Cr>", "Pick and close buffer" },
   },
 
   -- Quick fix
