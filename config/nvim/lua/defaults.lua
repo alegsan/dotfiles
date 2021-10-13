@@ -3,21 +3,23 @@ local M = {}
 local cmd = vim.cmd
 local o = vim.o
 local wo = vim.wo
-local bo = vim.bo
-local indent = 4
+-- local bo = vim.bo
+-- local indent = 4
 local opt = vim.opt
 
 function M.setup()
   cmd "syntax enable"
   cmd "filetype plugin indent on"
 
-  bo.shiftwidth = indent
-  bo.tabstop = indent
-  bo.softtabstop = indent
+  -- bo.shiftwidth = indent
+  -- bo.tabstop = indent
+  -- bo.softtabstop = indent
+  -- bo.expandtab = true
+
   o.termguicolors = true
   o.hidden = true
-  o.breakindent = true
   o.ignorecase = true
+  o.breakindent = true
   o.scrolloff = 8
   o.splitbelow = true
   o.splitright = true
@@ -31,6 +33,8 @@ function M.setup()
   o.history = 100
   o.lazyredraw = true
   o.synmaxcol = 240
+  o.textwidth = 80
+  o.colorcolumn = "81"
 
   wo.number = true
   wo.relativenumber = true

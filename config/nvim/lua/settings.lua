@@ -70,18 +70,18 @@ function M.auto_cmds()
     false
   )
 
-  vim.api.nvim_exec(
-    [[
-        fun! TrimWhitespace()
-            let l:save = winsaveview()
-            keeppatterns %s/\s\+$//e
-            call winrestview(l:save)
-        endfun
+  -- vim.api.nvim_exec(
+  --   [[
+  --       fun! TrimWhitespace()
+  --           let l:save = winsaveview()
+  --           keeppatterns %s/\s\+$//e
+  --           call winrestview(l:save)
+  --       endfun
 
-        "-- autocmd FileType * autocmd BufWritePre <buffer> call TrimWhitespace()
-    ]],
-    false
-  )
+  --       "-- autocmd FileType * autocmd BufWritePre <buffer> call TrimWhitespace()
+  --   ]],
+  --   false
+  -- )
 end
 
 function M.setup()

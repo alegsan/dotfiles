@@ -45,6 +45,7 @@ local mappings = {
     },
     f = { "<Cmd>FloatermNew<Cr>", "Floating terminal" },
     i = { "<Cmd>PackerInstall<Cr>", "Packer install" },
+    T = { "<Cmd>FloatermToggle<Cr>", "Toggle floating terminal" },
   },
 
   -- Buffer

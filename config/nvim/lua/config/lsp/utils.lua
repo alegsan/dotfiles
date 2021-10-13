@@ -70,9 +70,9 @@ function M.lsp_config(client, bufnr)
   local whichkey = require "config.which-key"
   whichkey.register_lsp(client)
 
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
-  end
+  -- if client.resolved_capabilities.document_formatting then
+  --   vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
+  -- end
 end
 
 function M.lsp_init(client, bufnr)
