@@ -1,7 +1,6 @@
 - link:
     ~/.config/regolith/i3: config/regolith/i3
     ~/.config/regolith/i3xrocks: config/regolith/i3xrocks
-    ~/.config/regolith/Xresources: config/regolith/Xresources
     ~/.config/regolith/styles: config/regolith/styles
     ~/.Xresources-regolith:
       force: true
