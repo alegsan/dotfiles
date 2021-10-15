@@ -10,6 +10,7 @@ TMP=/opt/trace32/tmp
 ;Connection to Host
 PBI=
 USB
+CONNECTIONMODE=AUTOCONNECT
 PROXYNAME=testrack-delta2
 PROXYPORT=8455
 ;NODE=am335x      ; 8214
