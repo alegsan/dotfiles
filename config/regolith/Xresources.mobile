@@ -10,8 +10,8 @@ i3-wm.program.1:gnome-screensaver
 i3-wm.program.2:greenclip daemon
 i3-wm.program.3:feh --bg-scale ~/.config/wallpaper
 
-i3-wm.bar.font:pango:Source Code Pro Medium 9, FontAwesome 9
-i3-wm.font:pango:Source Code Pro Medium 9
+i3-wm.bar.font:pango:Source Code Pro Medium 10, FontAwesome 10
+i3-wm.font:pango:Source Code Pro Medium 10
 i3-wm.workspace.01.name:1:
 i3-wm.workspace.02.name:2:
 i3-wm.workspace.03.name:3:
@@ -32,10 +32,10 @@ i3-wm.workspace.17.name:17:
 i3-wm.workspace.18.name:18:
 i3-wm.workspace.19.name:19:
 
-i3xrocks.value.font:Source Code Pro Medium 9
+i3xrocks.value.font:Source Code Pro Medium 10
 i3xrocks.memory.display:used
 i3xrocks.memory.percentage:true
 
-gnome.terminal.font:Source Code Pro 9
+gnome.terminal.font:Source Code Pro 10
 
-rofi.font:Source Code Pro Medium 11
+rofi.font:Source Code Pro Medium 12

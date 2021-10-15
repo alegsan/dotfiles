@@ -1,5 +1,6 @@
+- shell:
+    - gsettings set org.gnome.desktop.interface text-scaling-factor 1.0
+
 - link:
     ~/.config/regolith/Xresources: config/regolith/Xresources.mobile
 
-- shell:
-    - gsettings set org.gnome.desktop.interface text-scaling-factor 1.0
