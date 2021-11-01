@@ -1,0 +1,3 @@
+- sudo:
+  - shell:
+    - cp etc/mosquitto.conf /etc/mosquitto.conf
