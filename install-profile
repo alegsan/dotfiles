@@ -17,7 +17,7 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_DIR=$META_DIR/"plugins"
 
 cd "${BASE_DIR}"
-git submodule update --init --recursive --remote
+# git submodule update --init --recursive --remote
 
 while IFS= read -r config; do
 	CONFIGS+=" ${config}"
