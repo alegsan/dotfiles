@@ -1,37 +1,24 @@
 local M = {}
 
-local lsp_providers = { lua = true, rust = true, go = true, python = true, typescript = true }
-
-local function setup_servers()
-  local lspinstall = require "lspinstall"
-  local lsputils = require "config.lsp.utils"
-
-  lspinstall.setup()
-
-  -- null-ls
---  require("config.lsp.null-ls").setup()
-
-  local servers = lspinstall.installed_servers()
-  for _, server in pairs(servers) do
-    if lsp_providers[server] then
-      require("config.lsp." .. server).setup()
-    else
-      lsputils.setup_server(server)
-    end
-  end
-end
-
-local function post_install()
-  local lspinstall = require "lspinstall"
-  lspinstall.post_install_hook = function()
-    setup_servers()
-    vim.cmd "bufdo e"
-  end
-end
-
 function M.setup()
-  post_install()
-  setup_servers()
+  local lsp_installer = require("nvim-lsp-installer")
+  local lsputils = require("config.lsp.utils")
+
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+  lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(vim.tbl_deep_extend("force", {
+      on_attach = lsputils.lsp_attach,
+      on_exit = lsputils.lsp_exit,
+      on_init = lsputils.lsp_init,
+      capabilities = lsputils.get_capabilities(),
+      flags = { debounce_text_changes = 150 },
+    }, {}))
+  end)
 end
 
 return M

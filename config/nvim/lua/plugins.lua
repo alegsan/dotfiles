@@ -137,7 +137,7 @@ function M.setup()
 
     -- LSP config
     use { "neovim/nvim-lspconfig" }
-    use { "kabouzeid/nvim-lspinstall" }
+    use { "williamboman/nvim-lsp-installer" }
     use {
       "tamago324/nlsp-settings.nvim",
       config = function()
