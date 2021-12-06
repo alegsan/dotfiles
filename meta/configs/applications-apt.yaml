@@ -7,6 +7,7 @@
     - update-alternatives --install /usr/bin/python python /usr/bin/python2 1
     - update-alternatives --install /usr/bin/python python /usr/bin/python3 2
     - update-alternatives --set python /usr/bin/python3
+    - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
   - aptget:
       git:
@@ -44,6 +45,11 @@
       keepassxc:
       python3-ply:
       python3-git:
+      libsqlite3-dev:
+      nodejs:
+      npm:
+      python3-venv:
+      nerd-font-iosevka:
 
       # regolith packages
       regolith-desktop-mobile:
@@ -51,6 +57,9 @@
       regolith-look-ayu-dark:
       i3xrocks-nm-vpn:
       i3xrocks-memory:
+
+      neovim:
+        ppa_source: ppa:neovim-ppa/stable
 
       # wago
       wago-trace32:

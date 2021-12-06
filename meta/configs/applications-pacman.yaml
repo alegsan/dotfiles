@@ -1,3 +1,0 @@
-- sudo:
-  - yay: [xfce4-clipman-plugin]  
-  - yay: [gnucash, libdbi-drivers]
