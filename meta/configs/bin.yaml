@@ -2,3 +2,4 @@
     ~/.local/bin/exchange-gateway: local/bin/exchange-gateway.sh
     ~/.local/bin/rofi-i3-shortcut: local/bin/rofi-i3-shortcuts.sh
     ~/.local/bin/fix-gruvbox-palette: local/bin/fix-gruvbox-palette
+    ~/.local/bin/switch-apt-sources: local/bin/switch-apt-sources.sh
