@@ -1,0 +1,7 @@
+# /etc/acpi/events/lenovo-keyboard-backlight-up
+# This is called when the user presses the key brightness 
+# up button and calls /etc/acpi/lenovo-keyboard-backlight.sh for
+# further processing.
+
+event=video/brightnessup BRTUP 00000086
+action=/etc/acpi/lenovo-keyboard-backlight.sh up
