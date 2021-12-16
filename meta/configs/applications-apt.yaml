@@ -50,6 +50,7 @@
       npm:
       python3-venv:
       nerd-font-iosevka:
+      shellcheck:
 
       # regolith packages
       regolith-desktop-mobile:
