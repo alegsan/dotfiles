@@ -181,12 +181,12 @@ function M.setup()
 
     -- Better LSP experience
     -- use {'tjdevries/astronauta.nvim'}
-    use {
-      "glepnir/lspsaga.nvim",
-      config = function()
-        require("config.lspsaga").setup()
-      end,
-    }
+    -- use {
+    --   "glepnir/lspsaga.nvim",
+    --   config = function()
+    --     require("config.lspsaga").setup()
+    --   end,
+    -- }
     use {
       "onsails/lspkind-nvim",
       config = function()
