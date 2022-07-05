@@ -52,6 +52,7 @@
       nerd-font-iosevka:
       shellcheck:
       lxpolkit:
+      ssh-askpass:
 
       # regolith packages
       regolith-desktop-mobile:
