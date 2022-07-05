@@ -57,7 +57,7 @@ function manipulate-firmware-image()
 	rmdir "${tmp_mnt_point}"
 }
 
-function lgc-write-maniulated-firmware-image()
+function lgc-write-manipulated-firmware-image()
 {
 	manipulate-firmware-image $1
 	lgc-write-image $1
@@ -71,4 +71,53 @@ function lgc-switch-boot-medium()
 	echo "sd-mux to $medium..."
 	lgc sd-mux $medium
 	lgcon
+}
+
+function lgc-export-platform-env-vars()
+{
+	if [[ -z $1 ]]; then
+		echo "No platform specified"
+	fi
+
+	case "$1" in
+		pfcxxx)
+			export LG_PLATFORM=am3xxx_pfc_generic
+			export LG_APIKEY=$JFROG_APIKEY
+			export LG_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: pfcXXX"
+			export LG_PFCXXX_BUILDNUMBER=latest
+			export LG_PFCG2_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: pfc-g2"
+			export LG_PFCG2_BUILDNUMBER=latest
+			export LG_BAREBOX_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: master"
+			export LG_BAREBOX_AM335X_BUILDNUMBER=latest
+			export LG_BAREBOX_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: master-v2018.10.0"
+			export LG_BAREBOX_AM35XX_BUILDNUMBER=latest
+			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am3xxx_pfc_generic :: master"
+			export LG_KERNEL_BUILDNUMBER=latest
+			;;
+
+		vtpctp)
+			export LG_PLATFORM=imx6_vtpctp
+			export LG_APIKEY=$JFROG_APIKEY
+			export LG_PFC_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: vtpctp2"
+			export LG_PFC_BUILDNUMBER=latest
+			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
+			export LG_BAREBOX_BUILDNUMBER=latest
+			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: imx6_vtpctp :: master"
+			export LG_KERNEL_BUILDNUMBER=latest
+			;;
+		cc100)
+			export LG_PLATFORM=stm32mp1
+			export LG_APIKEY=$JFROG_APIKEY
+			export LG_PFC_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: CC100"
+			export LG_PFC_BUILDNUMBER=latest
+			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
+			export LG_BAREBOX_BUILDNUMBER=latest
+			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
+			export LG_KERNEL_BUILDNUMBER=latest
+			;;
+		*)
+			echo "platform $1 is not supported."
+			echo "supported platforms are: pfcxxx,vtpctp,cc100"
+			;;
+	esac
 }
