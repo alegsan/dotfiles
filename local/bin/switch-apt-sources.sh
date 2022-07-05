@@ -10,6 +10,7 @@ SOURCE_LIST=( "${APT_BASE_PATH}/sources.list"
 	      "${SOURCESD_PATH}/teams.list" 
 	      "${SOURCESD_PATH}/virtualbox.list" 
 	      "${SOURCESD_PATH}/wagoit.list"
+	      "${SOURCESD_PATH}/microsoftpackages.list"
 	    )
 
 print_help() {
