@@ -51,6 +51,7 @@
       python3-venv:
       nerd-font-iosevka:
       shellcheck:
+      lxpolkit:
 
       # regolith packages
       regolith-desktop-mobile:
