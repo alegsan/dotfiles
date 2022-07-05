@@ -47,7 +47,7 @@
       python3-git:
       libsqlite3-dev:
       nodejs:
-      npm:
+      # npm:
       python3-venv:
       nerd-font-iosevka:
       shellcheck:
