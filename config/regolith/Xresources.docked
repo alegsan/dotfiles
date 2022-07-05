@@ -8,7 +8,7 @@ i3-wm.window.border.size:3
 
 i3-wm.program.1:gnome-screensaver
 i3-wm.program.2:greenclip daemon
-i3-wm.program.3:feh --bg-scale ~/.config/wallpaper
+i3-wm.program.3:feh --bg-scale /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg
 
 i3-wm.bar.font:pango:Source Code Pro Medium 13, FontAwesome 13
 i3-wm.font:pango:Source Code Pro Medium 13
