@@ -1,0 +1,12 @@
+http:
+  routers:
+    omv:
+      entryPoints:
+        - "web"
+      rule: "Host(`omv.local`)"
+      service: omv
+  services:
+    omv:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.178.107:8091"
