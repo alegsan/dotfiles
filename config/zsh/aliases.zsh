@@ -79,18 +79,25 @@ function lgc-export-platform-env-vars()
 		echo "No platform specified"
 	fi
 
+	export LG_KERNEL_LOCAL_WORKSPACE_PATH=""
+	export LG_BAREBOX_LOCAL_WORKSPACE_PATH=""
+
 	case "$1" in
 		pfcxxx)
 			export LG_PLATFORM=am3xxx_pfc_generic
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: pfcXXX"
+			export LG_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: wago-pfc200 :: V03.10.xx :: pfcXXX"
 			export LG_PFCXXX_BUILDNUMBER=latest
 			export LG_PFCG2_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: pfc-g2"
 			export LG_PFCG2_BUILDNUMBER=latest
 			export LG_BAREBOX_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: master"
 			export LG_BAREBOX_AM335X_BUILDNUMBER=latest
-			export LG_BAREBOX_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: master-v2018.10.0"
+			export LG_BAREBOX_FASTBOOT_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: release_w04.01.03_14"
+			export LG_BAREBOX_FASTBOOT_AM335X_BUILDNUMBER=latest
+			export LG_BAREBOX_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: master"
 			export LG_BAREBOX_AM35XX_BUILDNUMBER=latest
+			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: release_w04.01.03_14"
+			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDNUMBER=latest
 			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am3xxx_pfc_generic :: master"
 			export LG_KERNEL_BUILDNUMBER=latest
 			;;
