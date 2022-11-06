@@ -121,3 +121,10 @@ function echo_blank() {
 }
 precmd_functions+=echo_blank
 preexec_functions+=echo_blank
+
+#compdef dstask
+#autoload
+_dstask() {
+    compadd -- $(dstask _completions "${words[@]}")
+}
+compdef _dstask dstask
