@@ -1,7 +1,7 @@
 local M = {}
 
 function M.auto_cmds()
-  vim.cmd "colorscheme gruvbox-material"
+  vim.cmd "colorscheme ayu-dark"
 
   -- Highlight on yank
   -- cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'

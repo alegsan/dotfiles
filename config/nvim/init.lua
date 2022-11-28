@@ -23,6 +23,8 @@ end
 
 packer_init()
 
+require("plugins").setup()
+
 sys_init()
 
 require("defaults").setup()
@@ -31,11 +33,9 @@ require("keymappings").setup()
 
 require("settings").setup()
 
-require("plugins").setup()
-
 require("config.lsp").setup()
 
-require("config.dap").setup()
+-- require("config.dap").setup()
 
 require("colorizer").setup()
 

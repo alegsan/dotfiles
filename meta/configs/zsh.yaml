@@ -1,3 +1,7 @@
+- sudo:
+  - aptget:
+      zsh:
+
 - shell:
     - 
       command: test -d ~/workspace/git/oh-my-zsh || sh -c "ZSH=~/workspace/git/oh-my-zsh RUNZSH=no KEEP_ZSHRC=yes $(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
@@ -13,8 +17,5 @@
         force: true
         path: config/zsh/zshrc
 
-    ~/workspace/git/oh-my-zsh/themes/gruvbox.zsh-theme: config/zsh/themes/gruvbox.zsh-theme
-    ~/workspace/git/oh-my-zsh/themes/gruvbox-dark.zsh-theme: config/zsh/themes/gruvbox-dark.zsh-theme
-    ~/workspace/git/oh-my-zsh/themes/gruvbox-light.zsh-theme: config/zsh/themes/gruvbox-light.zsh-theme
     ~/workspace/git/oh-my-zsh/themes/powerline.zsh-theme: config/zsh/themes/powerline.zsh-theme
     ~/workspace/git/oh-my-zsh/custom/aliases.zsh: config/zsh/aliases.zsh

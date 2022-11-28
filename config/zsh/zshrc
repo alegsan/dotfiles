@@ -8,7 +8,7 @@ export ZSH="/home/wago.local/u015645/workspace/git/oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="gruvbox-dark"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -108,12 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # eval dircolors
 [[ -f "$HOME/.dircolors" ]] \
     && eval "$(dircolors "$HOME/.dircolors")"
-
-# Gruvbox colors fix
-[[ -f "$HOME/.local/bin/fix-gruvbox-palette" ]] \
-    && [[ "$TERM" != 'xterm-kitty' ]] \
-    && [[ "$TERM" != 'tmux-256color' ]] \
-    && source "$HOME/.local/bin/fix-gruvbox-palette"
 
 # Empty line
 function echo_blank() {

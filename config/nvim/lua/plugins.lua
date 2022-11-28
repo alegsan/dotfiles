@@ -97,12 +97,12 @@ function M.setup()
     use { "norcalli/nvim-colorizer.lua" }
 
     -- Testing
-    use {
-      "rcarriga/vim-ultest",
-      config = "require('config.test').setup()",
-      run = ":UpdateRemotePlugins",
-      requires = { "vim-test/vim-test" },
-    }
+    -- use {
+    --   "rcarriga/vim-ultest",
+    --   config = "require('config.test').setup()",
+    --   run = ":UpdateRemotePlugins",
+    --   requires = { "vim-test/vim-test" },
+    -- }
 
     -- Telescope
     use { "nvim-lua/plenary.nvim" }
@@ -274,12 +274,7 @@ function M.setup()
     use { "nvim-treesitter/nvim-treesitter-textobjects" }
     use { "nvim-treesitter/playground" }
     use { "JoosepAlviste/nvim-ts-context-commentstring" }
-    use {
-      "romgrk/nvim-treesitter-context",
-      config = function()
-        require("treesitter-context.config").setup { enable = true }
-      end,
-    }
+    use { "romgrk/nvim-treesitter-context" }
     use {
       "windwp/nvim-ts-autotag",
       config = function()

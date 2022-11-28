@@ -1,0 +1,46 @@
+- sudo:
+
+  - shell:
+    - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+
+  - aptget:
+      git:
+      tig:
+      git-svn:
+      net-tools:
+      tree:
+      flex:
+      bison:
+      lzop:
+      libncurses-dev:
+      xmlstarlet:
+      vim-gtk:
+      u-boot-tools:
+      python3-dev:
+      python3-pip:
+      autorandr:
+      libow-dev:
+      libsnappy-dev:
+      python3:
+      python3-virtualenv:
+      python3-setuptools:
+      virtualenv:
+      ripgrep:
+      fzf:
+      fd-find:
+      p7zip:
+      xclip:
+      keepassxc:
+        ppa_source: ppa:phoerious/keepassxc
+      python3-ply:
+      python3-git:
+      libsqlite3-dev:
+      nodejs:
+      python3-venv:
+      shellcheck:
+      lxpolkit:
+      ssh-askpass:
+      parallel:
+
+      # wago
+      wago-devenv-2020.04:
