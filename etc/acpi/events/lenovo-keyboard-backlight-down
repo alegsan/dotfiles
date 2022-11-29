@@ -1,7 +1,0 @@
-# /etc/acpi/events/lenovo-keyboard-backlight-down
-# This is called when the user presses the key brightness 
-# down button and calls /etc/acpi/lenovo-keyboard-backlight.sh for
-# further processing.
-
-event=video/brightnessdown BRTDN 00000087
-action=/etc/acpi/lenovo-keyboard-backlight.sh down

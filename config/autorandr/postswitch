@@ -1,7 +1,0 @@
-#!/bin/bash
-
-DOTFILES_PATH="/home/wago.local/u015645/workspace/git/dotfiles"
-
-cd "$DOTFILES_PATH" && \
-        ./install-standalone "regolith-xresources-$AUTORANDR_CURRENT_PROFILE" &&
-        regolith-look refresh

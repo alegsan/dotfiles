@@ -1,3 +1,0 @@
-- shell:
-  - wget -nc -q https://github.com/naggie/dstask/releases/latest/download/dstask-linux-amd64 -O ~/.local/bin/dstask; exit 0
-  - chmod +x ~/.local/bin/dstask

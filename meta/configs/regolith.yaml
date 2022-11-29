@@ -1,9 +1,0 @@
-- link:
-    ~/.config/regolith/i3: config/regolith/i3
-    ~/.config/regolith/i3xrocks: config/regolith/i3xrocks
-    ~/.config/regolith/styles: config/regolith/styles
-    ~/.Xresources-regolith:
-      force: true
-      path: config/regolith/Xresources-regolith
-    ~/.config/wallpaper: config/walls/wallpaper
-    ~/.dircolors: config/dircolors

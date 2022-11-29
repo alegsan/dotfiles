@@ -1,8 +1,0 @@
-- sudo:
-    - aptget:
-        acpid:
-
-    - link:
-        /etc/acpi/events/lenovo-keyboard-backlight-up: etc/acpi/events/lenovo-keyboard-backlight-up
-        /etc/acpi/events/lenovo-keyboard-backlight-down: etc/acpi/events/lenovo-keyboard-backlight-down
-        /etc/acpi/lenovo-keyboard-backlight.sh: etc/acpi/lenovo-keyboard-backlight.sh

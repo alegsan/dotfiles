@@ -12,29 +12,29 @@ function M.lsp_diagnostics()
   vim.lsp.handlers["textDocument/references"] = vim.lsp.with(on_references, { loclist = true, virtual_text = true })
 
   -- Send diagnostics to quickfix list
-  do
-    local method = "textDocument/publishDiagnostics"
-    local default_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, meth, result, client_id, bufnr, config)
-      default_handler(err, meth, result, client_id, bufnr, config)
-      local diagnostics = vim.lsp.diagnostic.get_all()
-      local qflist = {}
-      for buf, diagnostic in pairs(diagnostics) do
-        for _, d in ipairs(diagnostic) do
-          d.bufnr = buf
-          d.lnum = d.range.start.line + 1
-          d.col = d.range.start.character + 1
-          d.text = d.message
-          table.insert(qflist, d)
-        end
-      end
-      vim.lsp.util.set_qflist(qflist)
-    end
-  end
+  -- do
+  --   local method = "textDocument/publishDiagnostics"
+  --   local default_handler = vim.lsp.handlers[method]
+  --   vim.lsp.handlers[method] = function(err, meth, result, client_id, bufnr, config)
+  --     default_handler(err, meth, result, client_id, bufnr, config)
+  --     local diagnostics = vim.lsp.diagnostic.get_all()
+  --     local qflist = {}
+  --     for buf, diagnostic in pairs(diagnostics) do
+  --       for _, d in ipairs(diagnostic) do
+  --         d.bufnr = buf
+  --         d.lnum = d.range.start.line + 1
+  --         d.col = d.range.start.character + 1
+  --         d.text = d.message
+  --         table.insert(qflist, d)
+  --       end
+  --     end
+  --     vim.lsp.util.set_qflist(qflist)
+  --   end
+  -- end
 end
 
 function M.lsp_highlight(client, bufnr)
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.api.nvim_exec(
       [[
         hi LspReferenceRead cterm=bold ctermbg=red guibg=#282f45
@@ -70,7 +70,7 @@ function M.lsp_config(client, bufnr)
   local whichkey = require "config.which-key"
   whichkey.register_lsp(client)
 
-  -- if client.resolved_capabilities.document_formatting then
+  -- if client.server_capabilities.document_formatting then
   --   vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
   -- end
 end
@@ -93,7 +93,7 @@ function M.get_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
   -- for nvim-cmp
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+  capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
   -- Code actions
   capabilities.textDocument.codeAction = {

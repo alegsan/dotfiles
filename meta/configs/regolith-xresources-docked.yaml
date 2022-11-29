@@ -1,6 +1,0 @@
-- shell:
-    - gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
-
-- link:
-    ~/.config/regolith/Xresources: config/regolith/Xresources.docked
-

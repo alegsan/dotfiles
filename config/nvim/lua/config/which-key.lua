@@ -364,7 +364,7 @@ function M.register_lsp(client)
 
   for _, m in pairs(lsp_mappings_opts) do
     local capability, key = unpack(m)
-    if client.resolved_capabilities[capability] then
+    if client.server_capabilities[capability] then
       wk.register(key, opts)
     end
   end

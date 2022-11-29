@@ -1,6 +1,5 @@
 - sudo:
     - aptget:
-        nerd-font-iosevka:
         neovim:
           ppa_source: ppa:neovim-ppa/unstable
 

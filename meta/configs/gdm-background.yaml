@@ -1,0 +1,15 @@
+- sudo:
+  - aptget:
+      libglib2.0-dev-bin:
+
+- shell:
+  - test -f /tmp/ubuntu-gdm-set-background || wget -qO - https://github.com/PRATAP-KUMAR/ubuntu-gdm-set-background/archive/main.tar.gz | tar zx -C /tmp --strip-components=1 ubuntu-gdm-set-background-main/ubuntu-gdm-set-background
+
+- sudo:
+  - shell:
+    - 
+      command: /tmp/ubuntu-gdm-set-background --image /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg || exit 0
+      stdin: true
+      stdout: true
+      stderr: true
+
