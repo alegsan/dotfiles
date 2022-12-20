@@ -92,11 +92,11 @@ function lgc-export-platform-env-vars()
 			export LG_PFCG2_BUILDNUMBER=latest
 			export LG_BAREBOX_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: master"
 			export LG_BAREBOX_AM335X_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: release_w04.01.03_14"
+			export LG_BAREBOX_FASTBOOT_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: release_w04.01.04_14"
 			export LG_BAREBOX_FASTBOOT_AM335X_BUILDNUMBER=latest
 			export LG_BAREBOX_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: master"
 			export LG_BAREBOX_AM35XX_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: release_w04.01.03_14"
+			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: release_w04.01.04_14"
 			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDNUMBER=latest
 			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am3xxx_pfc_generic :: master"
 			export LG_KERNEL_BUILDNUMBER=latest
@@ -109,6 +109,8 @@ function lgc-export-platform-env-vars()
 			export LG_PFC_BUILDNUMBER=latest
 			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
 			export LG_BAREBOX_BUILDNUMBER=latest
+			export LG_BAREBOX_FASTBOOT_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: release_w04.01.04_14"
+			export LG_BAREBOX_FASTBOOT_BUILDNUMBER=latest
 			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: imx6_vtpctp :: master"
 			export LG_KERNEL_BUILDNUMBER=latest
 			;;
@@ -119,6 +121,8 @@ function lgc-export-platform-env-vars()
 			export LG_PFC_BUILDNUMBER=latest
 			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
 			export LG_BAREBOX_BUILDNUMBER=latest
+			export LG_BAREBOX_FASTBOOT_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: release_w04.01.04_14"
+			export LG_BAREBOX_FASTBOOT_BUILDNUMBER=latest
 			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
 			export LG_KERNEL_BUILDNUMBER=latest
 			;;
