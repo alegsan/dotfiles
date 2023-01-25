@@ -36,7 +36,6 @@
       libsqlite3-dev:
       nodejs:
       shellcheck:
-      lxpolkit:
       ssh-askpass:
       parallel:
       gnome-tweaks:
