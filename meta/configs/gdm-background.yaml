@@ -8,7 +8,7 @@
 - sudo:
   - shell:
     - 
-      command: /tmp/ubuntu-gdm-set-background --image /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg || exit 0
+      command: source /etc/os-release; [[ $VERSION_ID = "20.04" ]] && IMAGE="matt-mcnulty-nyc-2nd-ave.jpg" || IMAGE="Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg"; /tmp/ubuntu-gdm-set-background --image /usr/share/backgrounds/$IMAGE || exit 0
       stdin: true
       stdout: true
       stderr: true
