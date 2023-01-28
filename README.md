@@ -6,21 +6,23 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 ## Installation
 
 ```bash
-~$ git clone --recursive https://gitlab.com/alegsan/dotfiles.git ~/.dotfiles
+❯ git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
 ```
 
 For installing a predefined profile:
 
 ```bash
-~/.dotfiles$ ./install-profile <profile> [<configs...>]
+❯ cd ~/.dotfiles
+
 # see meta/profiles/ for available profiles
+❯ ./install-profile <profile> [<configs...>]
 ```
 
 For installing single configurations:
 
 ```bash
-~/.dotfiles$ ./install-standalone <configs...>
 # see meta/configs/ for available configurations
+❯ ./install-standalone <configs...>
 ```
 
 You can run these installation commands safely multiple times, if you think that helps with better installation.
@@ -31,68 +33,107 @@ You can run these installation commands safely multiple times, if you think that
 ### Profiles
 
 ```
-meta/profiles/
-├── notebook-home
-└── notebook-work
+❯ tree meta/profiles
+
+meta/profiles
+├── nas
+├── notebook-hp-830-g5-privat
+└── notebook-lenovo-p15s-work
 ```
 
 ### Dotbot configurations
 
 ```
-meta/configs/
+❯ tree meta/configs
+
+meta/configs
 ├── applications-apt.yaml
-├── applications-pacman.yaml
 ├── bin.yaml
 ├── docker-apt.yaml
+├── gdm-background.yaml
 ├── git-work.yaml
 ├── git.yaml
+├── gnome-settings.yaml
+├── gnome-terminal.yaml
 ├── greenclip.yaml
 ├── lauterbach.yaml
-├── polybar.yaml
-├── regolith.yaml
+├── nvim.yaml
 ├── tig.yaml
-└── vim.yaml
+└── zsh.yaml
 ```
 
 ### Dotfiles
 
 ```
-config/
-├── git
-│   ├── config
-│   └── config-work
-├── polybar
-│   ├── config
-│   ├── launch.sh
-│   └── scripts
-│       └── popup-calendar.sh
-├── regolith
-│   ├── i3
+❯ tree -I meta -I install-profile -I install-standalone -I LICENSE -I README.md
+
+.
+├── config
+│   ├── git
+│   │   ├── config
+│   │   └── config-work
+│   ├── nvim
+│   │   ├── init.lua
+│   │   ├── lua
+│   │   │   ├── config
+│   │   │   │   ├── auto-session.lua
+│   │   │   │   ├── bufferline.lua
+│   │   │   │   ├── cmp.lua
+│   │   │   │   ├── dashboard.lua
+│   │   │   │   ├── doge.lua
+│   │   │   │   ├── galaxyline.lua
+│   │   │   │   ├── lsp
+│   │   │   │   │   ├── go.lua
+│   │   │   │   │   ├── init.lua
+│   │   │   │   │   ├── lua.lua
+│   │   │   │   │   ├── null-ls.lua
+│   │   │   │   │   ├── python.lua
+│   │   │   │   │   ├── rust.lua
+│   │   │   │   │   ├── typescript.lua
+│   │   │   │   │   └── utils.lua
+│   │   │   │   ├── lspsaga.lua
+│   │   │   │   ├── lualine.lua
+│   │   │   │   ├── neogit.lua
+│   │   │   │   ├── neorg.lua
+│   │   │   │   ├── nlsp-settings.lua
+│   │   │   │   ├── sniprun.lua
+│   │   │   │   ├── symbols-outline.lua
+│   │   │   │   ├── telescope.lua
+│   │   │   │   ├── test.lua
+│   │   │   │   ├── treesitter.lua
+│   │   │   │   ├── vimspector.lua
+│   │   │   │   └── which-key.lua
+│   │   │   ├── defaults.lua
+│   │   │   ├── keymappings.lua
+│   │   │   ├── plugins.lua
+│   │   │   ├── settings.lua
+│   │   │   └── utils
+│   │   │       └── cheatsheet.lua
+│   │   └── stylua.toml
+│   ├── tig
 │   │   └── config
-│   ├── i3xrocks
-│   │   └── conf.d
-│   │       ├── 01_setup
-│   │       ├── 10_nm-vpn
-│   │       ├── 40_cpu-usage
-│   │       ├── 50_memory
-│   │       ├── 80_battery
-│   │       ├── 80_rofication
-│   │       └── 90_time
-│   ├── Xresources
-│   └── Xresources-regolith
-├── tig
-│   └── config
-└── walls
-    ├── grey-hd.jpg
-    └── wallpaper -> grey-hd.jpg
-etc/
-└── apt
-    └── sources.list.d
-        └── ubuntu-fallback.list
-local/
-└── bin
-    └── exchange-gateway.sh
-opt/
-└── trace32
-    └── config_usb_proxy.t32
+│   └── zsh
+│       ├── aliases.zsh
+│       ├── themes
+│       │   └── powerline.zsh-theme
+│       └── zshrc
+├── etc
+│   └── apt
+│       └── sources.list.d
+│           └── ubuntu-fallback.list
+├── local
+│   └── bin
+│       └── switch-apt-sources.sh
+└── opt
+    ├── homeserver
+    │   ├── docker-compose.yaml
+    │   ├── pihole
+    │   │   └── etc-dnsmasq.d
+    │   │       └── 03-custom-dns.conf
+    │   └── traefik
+    │       ├── acme.json
+    │       ├── config.yml
+    │       └── traefik.yml
+    └── trace32
+        └── config_usb_proxy.t32
 ```
