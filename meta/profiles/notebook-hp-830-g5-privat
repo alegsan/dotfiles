@@ -2,6 +2,7 @@ applications-apt
 git
 tig
 gnome-terminal
+gnome-settings
 zsh
 nvim
 gdm-background
