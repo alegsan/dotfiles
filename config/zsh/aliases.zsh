@@ -105,14 +105,14 @@ function lgc-export-platform-env-vars()
 		vtpctp)
 			export LG_PLATFORM=imx6_vtpctp
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_PFC_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: vtpctp2"
-			export LG_PFC_BUILDNUMBER=latest
-			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
-			export LG_BAREBOX_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: release_w04.01.04_14"
-			export LG_BAREBOX_FASTBOOT_BUILDNUMBER=latest
-			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: imx6_vtpctp :: master"
-			export LG_KERNEL_BUILDNUMBER=latest
+			export LG_VTPCTP_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: vtpctp2"
+			export LG_VTPCTP_BUILDNUMBER=latest
+			export LG_BAREBOX_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
+			export LG_BAREBOX_IMX6_BUILDNUMBER=latest
+			export LG_BAREBOX_FASTBOOT_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: release_w04.01.04_14"
+			export LG_BAREBOX_FASTBOOT_IMX6_BUILDNUMBER=latest
+			export LG_KERNEL_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: imx6_vtpctp :: master"
+			export LG_KERNEL_IMX6_BUILDNUMBER=latest
 			;;
 		cc100)
 			export LG_PLATFORM=stm32mp1
