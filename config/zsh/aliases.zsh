@@ -117,14 +117,14 @@ function lgc-export-platform-env-vars()
 		cc100)
 			export LG_PLATFORM=stm32mp1
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_PFC_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: CC100"
-			export LG_PFC_BUILDNUMBER=latest
-			export LG_BAREBOX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
-			export LG_BAREBOX_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: release_w04.01.04_14"
-			export LG_BAREBOX_FASTBOOT_BUILDNUMBER=latest
-			export LG_KERNEL_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
-			export LG_KERNEL_BUILDNUMBER=latest
+			export LG_CC100_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: CC100"
+			export LG_CC100_BUILDNUMBER=latest
+			export LG_BAREBOX_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
+			export LG_BAREBOX_STM32MP1_BUILDNUMBER=latest
+			export LG_BAREBOX_FASTBOOT_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: release_w04.01.04_14"
+			export LG_BAREBOX_FASTBOOT_STM32MP1_BUILDNUMBER=latest
+			export LG_KERNEL_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
+			export LG_KERNEL_STM32MP1_BUILDNUMBER=latest
 			;;
 		*)
 			echo "platform $1 is not supported."
