@@ -136,8 +136,11 @@ function M.setup()
     -- use {'airblade/vim-rooter'}
 
     -- LSP config
-    use { "neovim/nvim-lspconfig" }
-    use { "williamboman/nvim-lsp-installer" }
+    use {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "neovim/nvim-lspconfig",
+    }
     use {
       "tamago324/nlsp-settings.nvim",
       config = function()

@@ -11,30 +11,63 @@ function M.setup()
   end
 
   local cmp = require "cmp"
+  local lspkind = require "lspkind"
+
+  local source_mapping = {
+    nvim_lsp = "[Lsp]",
+    luasnip = "[Snip]",
+    buffer = "[Buffer]",
+    nvim_lua = "[Lua]",
+    treesitter = "[Tree]",
+    path = "[Path]",
+    rg = "[Rg]",
+    nvim_lsp_signature_help = "[Sig]",
+    -- cmp_tabnine = "[TNine]",
+  }
 
   cmp.setup {
     formatting = {
-      format = function(entry, vim_item)
-        -- fancy icons and a name of kind
-        vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
-        -- set a name for each source
-        vim_item.menu = ({
-          buffer = "[Buffer]",
-          nvim_lsp = "[LSP]",
-          ultisnips = "[UltiSnips]",
-          nvim_lua = "[Lua]",
-          cmp_tabnine = "[TabNine]",
-          look = "[Look]",
-          path = "[Path]",
-          spell = "[Spell]",
-          calc = "[Calc]",
-          emoji = "[Emoji]",
-          treesitter = "[treesitter]",
-          neorg = "[Neorg]",
-        })[entry.source.name]
-        return vim_item
-      end,
+      format = lspkind.cmp_format {
+        mode = "symbol_text",
+        maxwidth = 40,
+
+        before = function(entry, vim_item)
+          vim_item.kind = lspkind.presets.default[vim_item.kind]
+
+          local menu = source_mapping[entry.source.name]
+          -- if entry.source.name == "cmp_tabnine" then
+          --   if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+          --     menu = entry.completion_item.data.detail .. " " .. menu
+          --   end
+          --   vim_item.kind = ""
+          -- end
+          vim_item.menu = menu
+          return vim_item
+        end,
+      },
     },
+    -- formatting = {
+    --   format = function(entry, vim_item)
+    --     -- fancy icons and a name of kind
+    --     vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
+    --     -- set a name for each source
+    --     vim_item.menu = ({
+    --       buffer = "[Buffer]",
+    --       nvim_lsp = "[LSP]",
+    --       ultisnips = "[UltiSnips]",
+    --       nvim_lua = "[Lua]",
+    --       cmp_tabnine = "[TabNine]",
+    --       look = "[Look]",
+    --       path = "[Path]",
+    --       spell = "[Spell]",
+    --       calc = "[Calc]",
+    --       emoji = "[Emoji]",
+    --       treesitter = "[treesitter]",
+    --       neorg = "[Neorg]",
+    --     })[entry.source.name]
+    --     return vim_item
+    --   end,
+    -- },
     mapping = {
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-k>"] = cmp.mapping.select_prev_item(),
