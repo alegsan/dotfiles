@@ -117,3 +117,6 @@ function echo_blank() {
 }
 # precmd_functions+=echo_blank
 preexec_functions+=echo_blank
+
+# enable direnv functionality
+eval "$(direnv hook zsh)"
