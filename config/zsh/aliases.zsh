@@ -86,9 +86,9 @@ function lgc-export-platform-env-vars()
 		pfcxxx)
 			export LG_PLATFORM=am3xxx_pfc_generic
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_FIRMWARE_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: wago-pfc200 :: V03.10.xx :: pfcXXX"
+			export LG_FIRMWARE_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: release :: V03.10.xx :: pfcXXX"
 			export LG_FIRMWARE_PFCXXX_BUILDNUMBER=latest
-			export LG_FIRMWARE_PFCG2_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: pfc-g2"
+			export LG_FIRMWARE_PFCG2_BUILDINFO_BUILDNAME="firmware :: pfc :: pfc-g2 :: main"
 			export LG_FIRMWARE_PFCG2_BUILDNUMBER=latest
 			export LG_BAREBOX_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: master"
 			export LG_BAREBOX_AM335X_BUILDNUMBER=latest
@@ -105,7 +105,7 @@ function lgc-export-platform-env-vars()
 		vtpctp)
 			export LG_PLATFORM=imx6_vtpctp
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_FIRMWARE_VTPCTP_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: vtpctp2"
+			export LG_FIRMWARE_VTPCTP_BUILDINFO_BUILDNAME="firmware :: pfc :: vtpctp2 :: main"
 			export LG_FIRMWARE_VTPCTP_BUILDNUMBER=latest
 			export LG_BAREBOX_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
 			export LG_BAREBOX_IMX6_BUILDNUMBER=latest
@@ -117,7 +117,7 @@ function lgc-export-platform-env-vars()
 		cc100)
 			export LG_PLATFORM=stm32mp1
 			export LG_APIKEY=$JFROG_APIKEY
-			export LG_FIRMWARE_CC100_BUILDINFO_BUILDNAME="firmware :: pfc :: trunk :: CC100"
+			export LG_FIRMWARE_CC100_BUILDINFO_BUILDNAME="firmware :: pfc :: CC100 :: main"
 			export LG_FIRMWARE_CC100_BUILDNUMBER=latest
 			export LG_BAREBOX_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
 			export LG_BAREBOX_STM32MP1_BUILDNUMBER=latest
