@@ -51,6 +51,9 @@
       virtualbox:
       virtualbox-ext-pack:
       direnv:
+      distccmon-gnome:
+      ccache:
+      distcc:
 
   - shell:
     # change gnucash language to german
