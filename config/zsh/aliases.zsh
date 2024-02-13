@@ -81,11 +81,11 @@ function lgc-export-platform-env-vars()
 
 	export LG_KERNEL_LOCAL_WORKSPACE_PATH=""
 	export LG_BAREBOX_LOCAL_WORKSPACE_PATH=""
+	export LG_APIKEY=$JFROG_APIKEY
 
 	case "$1" in
 		pfcxxx)
 			export LG_PLATFORM=am3xxx_pfc_generic
-			export LG_APIKEY=$JFROG_APIKEY
 			export LG_FIRMWARE_PFCXXX_BUILDINFO_BUILDNAME="firmware :: pfc :: release :: V03.10.xx :: pfcXXX"
 			export LG_FIRMWARE_PFCXXX_BUILDNUMBER=latest
 			export LG_FIRMWARE_PFCG2_BUILDINFO_BUILDNAME="firmware :: pfc :: pfc-g2 :: main"
@@ -104,7 +104,6 @@ function lgc-export-platform-env-vars()
 
 		vtpctp)
 			export LG_PLATFORM=imx6_vtpctp
-			export LG_APIKEY=$JFROG_APIKEY
 			export LG_FIRMWARE_VTPCTP_BUILDINFO_BUILDNAME="firmware :: pfc :: vtpctp2 :: main"
 			export LG_FIRMWARE_VTPCTP_BUILDNUMBER=latest
 			export LG_BAREBOX_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
@@ -116,7 +115,6 @@ function lgc-export-platform-env-vars()
 			;;
 		cc100)
 			export LG_PLATFORM=stm32mp1
-			export LG_APIKEY=$JFROG_APIKEY
 			export LG_FIRMWARE_CC100_BUILDINFO_BUILDNAME="firmware :: pfc :: CC100 :: main"
 			export LG_FIRMWARE_CC100_BUILDNUMBER=latest
 			export LG_BAREBOX_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
@@ -126,9 +124,20 @@ function lgc-export-platform-env-vars()
 			export LG_KERNEL_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
 			export LG_KERNEL_STM32MP1_BUILDNUMBER=latest
 			;;
+		pfc300)
+			export LG_PLATFORM=am6xxx
+			export LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME="firmware :: pfc :: pfc-300 :: main"
+			export LG_FIRMWARE_PFC300_BUILDNUMBER=latest
+			export LG_U_BOOT_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: next-am6xxx"
+			export LG_U_BOOT_AM6XXX_BUILDNUMBER=latest
+			export LG_U_BOOT_BACKUP_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: next-am6xxx"
+			export LG_U_BOOT_BACKUP_AM6XXX_BUILDNUMBER=latest
+			export LG_KERNEL_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am6xxx_pfc_generic :: next-am6xxx"
+			export LG_KERNEL_AM6XXX_BUILDNUMBER=latest
+			;;
 		*)
 			echo "platform $1 is not supported."
-			echo "supported platforms are: pfcxxx,vtpctp,cc100"
+			echo "supported platforms are: pfcxxx,vtpctp,cc100,pfc300"
 			;;
 	esac
 }
