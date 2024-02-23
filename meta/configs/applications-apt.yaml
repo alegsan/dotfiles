@@ -51,6 +51,7 @@
       virtualbox:
       virtualbox-ext-pack:
       direnv:
+      jq:
 
   - shell:
     # change gnucash language to german
