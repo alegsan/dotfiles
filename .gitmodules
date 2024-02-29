@@ -10,4 +10,4 @@
 	url = https://github.com/DrDynamic/dotbot-snap.git
 [submodule "meta/plugins/dotbot-aptget.git"]
 	path = meta/plugins/dotbot-aptget.git
-	url = git@github.com:alegsan/dotbot-aptget.git
+	url = https://github.com/alegsan/dotbot-aptget.git
