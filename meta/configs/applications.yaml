@@ -8,62 +8,55 @@
     - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
 
   - aptget:
-      google-chrome-stable:
-      tig:
-      git:
-      git-svn:
-      net-tools:
-      tree:
-      flex:
       bison:
-      lzop:
+      ccache:
+      curl:
+      direnv:
+      fd-find:
+      flex:
+      fzf:
+      git:
+      gnome-shell-extensions-gpaste:
+      gnome-tweaks:
+      google-chrome-stable:
+      htop:
+      jq:
       libncurses-dev:
-      xmlstarlet:
-      vim-gtk:
-      u-boot-tools:
-      python3-dev:
-      python3-pip:
-      python3-virtualenv:
-      python3-setuptools:
-      python3-venv:
-      python3-ply:
-      python3-git:
       libow-dev:
       libsnappy-dev:
-      virtualenv:
-      ripgrep:
-      fzf:
-      fd-find:
-      p7zip:
-      xclip:
-      keepassxc:
-        ppa_source: ppa:phoerious/keepassxc
       libsqlite3-dev:
+      lzop:
+      net-tools:
       nodejs:
+      p7zip:
+      parallel:
+      python3-dev:
+      python3-git:
+      python3-pip:
+      python3-ply:
+      python3-setuptools:
+      python3-venv:
+      python3-virtualenv:
+      ripgrep:
       shellcheck:
       ssh-askpass:
-      parallel:
-      gnome-tweaks:
-      gnome-shell-extensions-gpaste:
-      curl:
-      htop:
+      tig:
+      tree:
+      u-boot-tools:
+      vim-gtk:
+      virtualenv:
+      xclip:
+      xmlstarlet:
+
+  - aptget:
       gnucash:
-      virtualbox:
-      virtualbox-ext-pack:
-      direnv:
-      jq:
-      distccmon-gnome:
-      ccache:
-      distcc:
-
-  - snap:
-      # bitwarden cli
-      bw:
-
   - shell:
     # change gnucash language to german
     - sed -i 's/^Exec=\(gnucash.*\)/Exec=env LANG=de_DE.UTF-8 LANGUAGE=de_DE.UTF-8 \1/' /usr/share/applications/gnucash.desktop
 
+  - snap:
+      # bitwarden cli
+      bw:
 
 - shell:
   - pip3 install keep
