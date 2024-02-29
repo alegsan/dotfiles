@@ -47,7 +47,7 @@ meta/profiles
 ❯ tree meta/configs
 
 meta/configs
-├── applications-apt.yaml
+├── applications.yaml
 ├── bin.yaml
 ├── docker-apt.yaml
 ├── gdm-background.yaml
