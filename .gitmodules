@@ -5,9 +5,9 @@
 [submodule "meta/plugins/dotbot-sudo.git"]
 	path = meta/plugins/dotbot-sudo.git
 	url = https://github.com/DrDynamic/dotbot-sudo.git
-[submodule "meta/plugins/dotbot-plugin-aptget.git"]
-	path = meta/plugins/dotbot-plugin-aptget.git
-	url = https://github.com/dein0s/dotbot_plugin_aptget.git
 [submodule "meta/plugins/dotbot-snap.git"]
 	path = meta/plugins/dotbot-snap.git
 	url = https://github.com/DrDynamic/dotbot-snap.git
+[submodule "meta/plugins/dotbot-aptget.git"]
+	path = meta/plugins/dotbot-aptget.git
+	url = git@github.com:alegsan/dotbot-aptget.git
