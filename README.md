@@ -36,9 +36,9 @@ You can run these installation commands safely multiple times, if you think that
 ❯ tree meta/profiles
 
 meta/profiles
-├── nas
 ├── notebook-hp-830-g5-privat
-└── notebook-lenovo-p15s-work
+├── notebook-lenovo-p15s-work
+└── pc-lenovo-thinkstation-work -> notebook-lenovo-p15s-work
 ```
 
 ### Dotbot configurations
@@ -55,7 +55,7 @@ meta/configs
 ├── git.yaml
 ├── gnome-settings.yaml
 ├── gnome-terminal.yaml
-├── greenclip.yaml
+├── keepercommander.yaml
 ├── lauterbach.yaml
 ├── nvim.yaml
 ├── tig.yaml
@@ -125,15 +125,6 @@ meta/configs
 │   └── bin
 │       └── switch-apt-sources.sh
 └── opt
-    ├── homeserver
-    │   ├── docker-compose.yaml
-    │   ├── pihole
-    │   │   └── etc-dnsmasq.d
-    │   │       └── 03-custom-dns.conf
-    │   └── traefik
-    │       ├── acme.json
-    │       ├── config.yml
-    │       └── traefik.yml
     └── trace32
         └── config_usb_proxy.t32
 ```
