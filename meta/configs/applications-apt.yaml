@@ -56,6 +56,10 @@
       ccache:
       distcc:
 
+  - snap:
+      # bitwarden cli
+      bw:
+
   - shell:
     # change gnucash language to german
     - sed -i 's/^Exec=\(gnucash.*\)/Exec=env LANG=de_DE.UTF-8 LANGUAGE=de_DE.UTF-8 \1/' /usr/share/applications/gnucash.desktop
