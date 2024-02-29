@@ -1,3 +1,0 @@
-- shell:
-  - wget -nc -q https://github.com/erebe/greenclip/releases/download/v4.2/greenclip -O ~/.local/bin/greenclip; exit 0
-  - chmod +x ~/.local/bin/greenclip
