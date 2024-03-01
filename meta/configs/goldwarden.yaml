@@ -1,0 +1,13 @@
+- shell:
+    - wget -q -O /tmp/goldwarden.deb $(wget -q -O - 'https://api.github.com/repos/quexten/goldwarden/releases/latest' | jq -r '.assets[] | select(.name | match("goldwarden_[0-9]{1,}.[0-9]{1,}.[0-9]{1,}_amd64.deb")).browser_download_url')
+
+- sudo:
+    - shell:
+        - dpkg --skip-same-version --install /tmp/goldwarden.deb
+
+- shell:
+    - goldwarden setup polkit
+    - goldwarden setup systemd && systemctl --user restart goldwarden.service
+    - goldwarden config set-server https://vault.osllll.de
+    -
+      command: if [ $(goldwarden vault pin status | cut -d ' ' -f3) = "disabled" ]; then goldwarden vault pin set; fi

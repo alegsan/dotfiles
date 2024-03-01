@@ -1,8 +1,9 @@
 applications
-git
-tig
-gnome-terminal
-gnome-settings
-zsh
-nvim
 gdm-background
+git
+gnome-settings
+gnome-terminal
+goldwarden
+nvim
+tig
+zsh
