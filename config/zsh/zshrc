@@ -120,3 +120,5 @@ preexec_functions+=echo_blank
 
 # enable direnv functionality
 eval "$(direnv hook zsh)"
+
+export SSH_AUTH_SOCK=~/.goldwarden-ssh-agent.sock
