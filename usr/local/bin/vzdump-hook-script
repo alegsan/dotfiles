@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+
+# Credits to the users Kochi1316 and dremeier from this proxmox forum post where
+# the original script can be found:
+# https://forum.proxmox.com/threads/proxmox-backup-server-pbs-automatisch-via-wol-starten-und-stoppen.127266/
+
+# This script is used to start a remote proxmox backupserver when one or more
+# backups are scheduled by the proxmox virtual environment. After all backups
+# are finished this script start all maintainance task manually and shuts the
+# server down until nex backups are scheduled.
+
+# Add the path to this script to the vzdump configuration in /etc/vzdump.conf
+# to let proxmox call this script for every backup job.
+
+SCRIPT=${0##*/}
+
+PBS_STORAGE_ID=pbs              # storage id of added pbs in proxmox
+PBS_MAC_ID="4c:52:62:3f:99:41"  # mac address of pbs wol capable network interface
+PBS_HOST="pbs"                  # host name or ip address of pbs
+PBS_WAIT_TIME=$((3*60))         # time in seconds to wait for pbs storage is
+                                # available
+PBS_DATASTORE_NAME="backup"     # name of datastore on pbs where e.g. garbage
+                                # collection should start on after backup
+
+PVE_NIC=vmbr0                   # network interface of pve wich will be send the
+                                # wol magic packet
+
+log_info() {
+    logger -t "${SCRIPT}" -p info "${*}"
+}
+
+log_err() {
+    logger -t "${SCRIPT}" -p err "${*}"
+}
+
+run_pbs_cmd() {
+    ssh root@${PBS_HOST} "${*}"
+}
+
+wait_for_pbs_storage_state() {
+
+    local desired_state="${1}"
+    local attempts=${PBS_WAIT_TIME}
+    local pbs_status
+
+    log_info "wait until pbs storage becomes ${desired_state}"
+    while [ ${attempts} -gt 0 ]; do
+        pbs_status=$(pvesm status --storage ${PBS_STORAGE_ID} 2> /dev/null \
+                                                            | tail -1 \
+                                                            | tr -s ' ' \
+                                                            | cut -s -d ' ' -f3)
+
+        [[ "${pbs_status}" = "${desired_state}" ]] && break
+        attempts=$((attempts-1))
+        sleep 1
+    done
+
+    if [ "${pbs_status}" != "${desired_state}" ]; then
+        log_err "pbs storage does not get ${desired_state} after ${PBS_WAIT_TIME} seconds"
+        return 1
+    fi
+
+    log_info "pbs storage ${desired_state}"
+    return 0
+}
+
+wake_up_pbs() {
+
+    local attempts=${PBS_WAIT_TIME}
+    local pbs_status
+
+    if ping -c 1 ${PBS_HOST} &> /dev/null; then
+        log_info "pbs already up"
+    else
+        log_info "pbs down, waking up"
+        etherwake -i ${PVE_NIC} ${PBS_MAC_ID}
+    fi
+
+    if ! wait_for_pbs_storage_state active; then
+        return 1
+    fi
+
+    return 0
+}
+
+get_num_of_running_tasks() {
+    run_pbs_cmd proxmox-backup-manager task list | grep -c running
+}
+
+wait_for_running_tasks() {
+
+    local running_tasks
+
+    running_tasks=$(get_num_of_running_tasks)
+    while [ "${running_tasks}" -gt 0 ]; do
+        log_info "wait for ${running_tasks} tasks to be completed"
+        sleep 60
+        running_tasks=$(get_num_of_running_tasks)
+    done
+
+    log_info "no running tasks"
+}
+
+shutdown_pbs() {
+
+    log_info "shutting down pbs"
+    run_pbs_cmd "shutdown -h 0" &> /dev/null
+
+    if ! wait_for_pbs_storage_state inactive; then
+        log_err "shutting down pbs failed"
+        return 1
+    fi
+
+    log_info "pbs shut down"
+    return 0
+}
+
+prune_backups() {
+    log_info "prune backups"
+    pvesm prune-backups ${PBS_STORAGE_ID}
+}
+
+garbage_collect() {
+    log_info "collect garbage"
+    run_pbs_cmd proxmox-backup-manager garbage-collection start \
+                                                        ${PBS_DATASTORE_NAME}
+}
+
+verify_backups() {
+    log_info "verify backups"
+    run_pbs_cmd proxmox-backup-manager verify ${PBS_DATASTORE_NAME}
+}
+
+scrub_zfs_on_pbs() {
+    log_info "scrubbing zfs pool ${PBS_DATASTORE_NAME}"
+    run_pbs_cmd "zpool scrub ${PBS_DATASTORE_NAME} -w"
+}
+
+# main
+case "$1" in
+    job-init)
+        if ! wake_up_pbs; then
+            exit 1
+        fi
+        ;;
+
+    job-end)
+        prune_backups
+        garbage_collect
+        verify_backups
+        scrub_zfs_on_pbs
+        wait_for_running_tasks
+
+        if ! shutdown_pbs; then
+            exit 1
+        fi
+        ;;
+esac
+
+exit 0
