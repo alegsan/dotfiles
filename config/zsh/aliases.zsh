@@ -92,12 +92,12 @@ function lgc-export-platform-env-vars()
 			export LG_FIRMWARE_PFCG2_BUILDNUMBER=latest
 			export LG_BAREBOX_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: master"
 			export LG_BAREBOX_AM335X_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: release_w04.01.09_14"
-			export LG_BAREBOX_FASTBOOT_AM335X_BUILDNUMBER=latest
+			export LG_BAREBOX_BACKUP_AM335X_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am335x_pfc :: release_w04.01.09_14"
+			export LG_BAREBOX_BACKUP_AM335X_BUILDNUMBER=latest
 			export LG_BAREBOX_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: master"
 			export LG_BAREBOX_AM35XX_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: release_w04.01.09_14"
-			export LG_BAREBOX_FASTBOOT_AM35XX_BUILDNUMBER=latest
+			export LG_BAREBOX_BACKUP_AM35XX_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: am35xx_pfc :: release_w04.01.09_14"
+			export LG_BAREBOX_BACKUP_AM35XX_BUILDNUMBER=latest
 			export LG_KERNEL_AM3XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am3xxx_pfc_generic :: master"
 			export LG_KERNEL_AM3XXX_BUILDNUMBER=latest
 			;;
@@ -108,8 +108,8 @@ function lgc-export-platform-env-vars()
 			export LG_FIRMWARE_VTPCTP_BUILDNUMBER=latest
 			export LG_BAREBOX_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: master"
 			export LG_BAREBOX_IMX6_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: release_w04.01.09_14"
-			export LG_BAREBOX_FASTBOOT_IMX6_BUILDNUMBER=latest
+			export LG_BAREBOX_BACKUP_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: imx6_vtpctp :: release_w04.01.09_14"
+			export LG_BAREBOX_BACKUP_IMX6_BUILDNUMBER=latest
 			export LG_KERNEL_IMX6_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: imx6_vtpctp :: master"
 			export LG_KERNEL_IMX6_BUILDNUMBER=latest
 			;;
@@ -119,8 +119,8 @@ function lgc-export-platform-env-vars()
 			export LG_FIRMWARE_CC100_BUILDNUMBER=latest
 			export LG_BAREBOX_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: master"
 			export LG_BAREBOX_STM32MP1_BUILDNUMBER=latest
-			export LG_BAREBOX_FASTBOOT_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: release_w04.01.09_14"
-			export LG_BAREBOX_FASTBOOT_STM32MP1_BUILDNUMBER=latest
+			export LG_BAREBOX_BACKUP_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: barebox :: stm32mp1_cc100 :: release_w04.01.09_14"
+			export LG_BAREBOX_BACKUP_STM32MP1_BUILDNUMBER=latest
 			export LG_KERNEL_STM32MP1_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: stm32mp1_cc100 :: master"
 			export LG_KERNEL_STM32MP1_BUILDNUMBER=latest
 			;;
