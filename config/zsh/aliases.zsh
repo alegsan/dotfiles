@@ -31,22 +31,30 @@ function lgc-write-image()
 
 function manipulate-firmware-image()
 {
-	local firmware_image="${1?please provide a firmware image}"
+	local firmware_image="${1}"
+	local device="${2}"
 	local tmp_mnt_point="$(mktemp -d)"
 	local dispatcher_conf="${tmp_mnt_point}/etc/serial_dispatcher.conf"
 	local profile_file="${tmp_mnt_point}/root/.profile"
+	local inittab="${tmp_mnt_point}/etc/inittab"
 
 	sudo mount -o loop,offset=$((512*49152)) "${firmware_image}" \
 							"${tmp_mnt_point}"
 
-	# Change wago service console to linux console
-	if [ -f "${dispatcher_conf}" ]; then
-		sudo sed -i 's/BAUD=.*/BAUD=115200/' "${dispatcher_conf}"
-		sudo sed -i 's/PARITY=.*/PARITY=0/' "${dispatcher_conf}"
-		sudo sed -i 's/ACTIVATE_WSERVICE=.*/ACTIVATE_WSERVICE=0/' \
-							"${dispatcher_conf}"
-		sudo sed -i 's/ACTIVATE_SHELL=.*/ACTIVATE_SHELL=1/' \
-							"${dispatcher_conf}"
+	# Change wago service console to linux console on pfcxxx, vtpctp or cc100
+	if [[ "${device}" =~ "^pfcxxx$|^cc100$|^vtpctp$" ]]; then
+		if [[ -f "${dispatcher_conf}" ]]; then
+			sudo sed -i 's/BAUD=.*/BAUD=115200/' "${dispatcher_conf}"
+			sudo sed -i 's/PARITY=.*/PARITY=0/' "${dispatcher_conf}"
+			sudo sed -i 's/ACTIVATE_WSERVICE=.*/ACTIVATE_WSERVICE=0/' \
+								"${dispatcher_conf}"
+			sudo sed -i 's/ACTIVATE_SHELL=.*/ACTIVATE_SHELL=1/' \
+								"${dispatcher_conf}"
+		fi
+	# pfc300 does not have a serial dispatcher. We need to manipulate the
+	# inittab directly here.
+	elif [[ ${device} = "pfc300" ]]; then
+		sudo sed -i 's|#console::respawn:/sbin/getty -L 115200 serial xterm|console::respawn:/sbin/getty -L 115200 ttyS2 xterm|' "${inittab}"
 	fi
 
 	# Remove first login password change prompt
@@ -59,8 +67,11 @@ function manipulate-firmware-image()
 
 function lgc-write-manipulated-firmware-image()
 {
-	manipulate-firmware-image $1
-	lgc-write-image $1
+	local image="${1?please provide a image file}"
+	local device="${2?please provide a target device e.g. one of: pfcxxx,vtpctp,cc100,pfc300}"
+
+	manipulate-firmware-image "${image}" "${device}"
+	lgc-write-image "${image}"
 }
 
 function lgc-switch-boot-medium()
