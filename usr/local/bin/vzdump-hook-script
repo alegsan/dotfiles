@@ -138,7 +138,7 @@ scrub_zfs_on_pbs() {
 
 # main
 case "$1" in
-    job-init)
+    job-init | power-on)
         if ! wake_up_pbs; then
             exit 1
         fi
@@ -155,6 +155,13 @@ case "$1" in
             exit 1
         fi
         ;;
+
+    power-off)
+        if ! shutdown_pbs; then
+            exit 1
+        fi
+        ;;
+
 esac
 
 exit 0
