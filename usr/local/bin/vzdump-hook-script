@@ -134,6 +134,7 @@ verify_backups() {
 scrub_zfs_on_pbs() {
     log_info "scrubbing zfs pool ${PBS_DATASTORE_NAME}"
     run_pbs_cmd "zpool scrub ${PBS_DATASTORE_NAME} -w"
+    log_info "scrubbing zfs pool DONE"
 }
 
 # main
