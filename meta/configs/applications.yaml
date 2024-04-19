@@ -1,9 +1,8 @@
 - sudo:
 
   - shell:
-    # add google key for google-chrome
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+    -
+      command: if [ ! -f "/etc/apt/sources.list.d/google-chrome.list" ]; then wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list; fi
 
   - aptget:
       bison:
@@ -49,8 +48,7 @@
 
   - shell:
     # install routine for nodejs, see https://deb.nodesource.com/
-    - curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    - echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    - curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
   - aptget:
       nodejs:
 
