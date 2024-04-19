@@ -52,11 +52,5 @@
   - aptget:
       nodejs:
 
-  - aptget:
-      gnucash:
-  - shell:
-    # change gnucash language to german
-    - sed -i 's/^Exec=\(gnucash.*\)/Exec=env LANG=de_DE.UTF-8 LANGUAGE=de_DE.UTF-8 \1/' /usr/share/applications/gnucash.desktop
-
 - shell:
   - pip3 install keep
