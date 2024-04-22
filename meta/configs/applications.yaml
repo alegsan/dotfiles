@@ -9,6 +9,7 @@
       ca-certificates:
       ccache:
       curl:
+      colordiff:
       direnv:
       fd-find:
       flex:
