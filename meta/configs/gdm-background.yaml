@@ -1,15 +1,13 @@
-- sudo:
-  - aptget:
-      libglib2.0-dev-bin:
+- create:
+  - ~/workspace/git/
 
 - shell:
-  - test -f /tmp/ubuntu-gdm-set-background || wget -qO - https://github.com/PRATAP-KUMAR/ubuntu-gdm-set-background/archive/main.tar.gz | tar zx -C /tmp --strip-components=1 ubuntu-gdm-set-background-main/ubuntu-gdm-set-background
+  - GIT_PATH="${HOME}/workspace/git/ubuntu-gdm-set-background" && test -d ${GIT_PATH} || git clone https://github.com/PRATAP-KUMAR/ubuntu-gdm-set-background.git ${GIT_PATH}
 
 - sudo:
   - shell:
     - 
-      command: source /etc/os-release; [[ $VERSION_ID = "20.04" ]] && IMAGE="matt-mcnulty-nyc-2nd-ave.jpg" || IMAGE="Optical_Fibers_in_Dark_by_Elena_Stravoravdi.jpg"; /tmp/ubuntu-gdm-set-background --image /usr/share/backgrounds/$IMAGE || exit 0
+      command: cd /home/wago.local/u015645/workspace/git/ubuntu-gdm-set-background && bash ubuntu-gdm-set-background --image /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg
       stdin: true
       stdout: true
       stderr: true
-
