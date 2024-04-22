@@ -3,14 +3,15 @@
 APT_BASE_PATH="/etc/apt"
 SOURCESD_PATH="${APT_BASE_PATH}/sources.list.d"
 SOURCE_LIST=( "${APT_BASE_PATH}/sources.list" 
+              "${APT_BASE_PATH}/apt.conf.d/30detectproxy"
 	      "${SOURCESD_PATH}/devt-debian-prod.list" 
 	      "${SOURCESD_PATH}/docker.list" 
 	      "${SOURCESD_PATH}/google-chrome-wago.list" 
+	      "${SOURCESD_PATH}/microsoft-edge-wago.list"
+	      "${SOURCESD_PATH}/microsoftpackages.list"
 	      "${SOURCESD_PATH}/onedrive.list" 
-	      "${SOURCESD_PATH}/teams.list" 
 	      "${SOURCESD_PATH}/virtualbox.list" 
 	      "${SOURCESD_PATH}/wagoit.list"
-	      "${SOURCESD_PATH}/microsoftpackages.list"
 	    )
 
 print_help() {
