@@ -1,0 +1,6 @@
+- sudo:
+
+  - aptget:
+      wago-devenv-2020.04-linaro.toolchain-2022.08-wago.1-aarch64-linux-gnu:
+      wago-devenv-2020.04-linaro.toolchain-2022.08-wago.1-arm-linux-gnueabihf:
+      wago-trace32:
