@@ -18,13 +18,17 @@
         force: true
         path: config/zsh/zshrc
 
+    ~/.zshenv:
+        force: true
+        path: config/zsh/zshenv-${USER}
+
     ~/workspace/git/oh-my-zsh/themes/powerline.zsh-theme: config/zsh/themes/powerline.zsh-theme
     ~/workspace/git/oh-my-zsh/custom/aliases.zsh: config/zsh/aliases.zsh
 
 - shell:
-  - if ! grep -q $(id -un) /etc/passwd; then getent passwd $(id -un) | sudo tee -a /etc/passwd; fi
+  - if [ "${SHELL}" != "/bin/zsh" ]; then if ! grep -q $(id -un) /etc/passwd; then getent passwd $(id -un) | sudo tee -a /etc/passwd; fi; fi
   - 
-    command: chsh -s /bin/zsh
+    command: if [ "${SHELL}" != "/bin/zsh" ]; then chsh -s /bin/zsh; fi
     stdout: true
     stdin: true
     stderr: true

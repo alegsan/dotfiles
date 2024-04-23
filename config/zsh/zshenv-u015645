@@ -1,0 +1,10 @@
+# Labgrid
+export LG_CROSSBAR=ws://testrack-alpha:20408/ws
+
+# Lauterbach
+export T32SYS=/opt/trace32
+export T32TMP=/var/tmp
+export T32PDFVIEWER=${T32SYS}/bin/pc_linux64/t32_startpdfviewer.sh
+
+# SSH-Agent
+export SSH_AUTH_SOCK=${HOME}/.keeper/oleg.karfich@wago.com.ssh_agent
