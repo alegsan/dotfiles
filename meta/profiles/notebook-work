@@ -1,4 +1,5 @@
 applications
+direnv-work
 git-work
 bin
 zsh

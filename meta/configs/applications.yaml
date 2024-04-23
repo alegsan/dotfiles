@@ -10,7 +10,6 @@
       ccache:
       curl:
       colordiff:
-      direnv:
       fd-find:
       flex:
       fzf:
