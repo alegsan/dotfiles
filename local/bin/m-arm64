@@ -1,0 +1,16 @@
+#!/bin/bash
+
+params=$*
+
+if git config remote.origin.url | grep -q u-boot; then
+        arch=arm
+else
+        arch=arm64
+fi
+
+cross_compile=aarch64-linux-gnu-
+
+echo -e "\e[00;32m ----\e[00m\e[00;31m CROSS_COMPILE=${cross_compile}\e[00m"
+echo -e "\e[00;32m ----\e[00m\e[00;31m ARCH=${arch}\e[00m"
+
+make ARCH="${arch}" CROSS_COMPILE="${cross_compile}" -j16 ${params}

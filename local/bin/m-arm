@@ -1,0 +1,9 @@
+#!/bin/bash
+
+arch=arm
+params=$*
+cross_compile="arm-linux-gnueabihf-"
+
+echo -e "\e[00;32m ----\e[00m\e[00;31m ${cross_compile}\e[00m"
+
+make ARCH="${arch}" CROSS_COMPILE="${cross_compile}" -j16 ${params}

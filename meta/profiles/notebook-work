@@ -3,6 +3,7 @@ applications-work
 direnv-work
 git-work
 bin
+bin-work
 zsh
 gnome-terminal
 tig
