@@ -24,6 +24,7 @@
       libow-dev:
       libsnappy-dev:
       libsqlite3-dev:
+      libssl-dev:
       lzop:
       net-tools:
       p7zip:
