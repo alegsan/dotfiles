@@ -1,2 +1,2 @@
-PATH_add /srv/chroot/devenv-2020.04/root/opt/LINARO.Toolchain-2022.08/aarch64-linux-gnu/bin
-PATH_add /srv/chroot/devenv-2020.04/root/opt/LINARO.Toolchain-2022.08/arm-linux-gnueabihf/bin
+PATH_add /srv/chroot/devenv-2020.04/root/opt/LINARO.Toolchain-2022.08-wago.1/aarch64-linux-gnu/bin
+PATH_add /srv/chroot/devenv-2020.04/root/opt/LINARO.Toolchain-2022.08-wago.1/arm-linux-gnueabihf/bin
