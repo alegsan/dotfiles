@@ -1,7 +1,5 @@
 - sudo:
     - aptget:
-        fonts-font-awesome:
-        fonts-fork-awesome:
         neovim:
           ppa_source: ppa:neovim-ppa/unstable
 
@@ -20,7 +18,7 @@
     - pip3 install --user neovim
 
     # install nerd fonts for special glyphs
-    - cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DroidSansMono/DroidSansMNerdFontMono-Regular.otf && curl -fLo "Iosevka Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Iosevka/IosevkaNerdFontMono-Regular.ttf && fc-cache
+    - _FONT=Iosevka.tar.xz; cd ~/.local/share/fonts && curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${_FONT} && tar xf ${_FONT} && fc-cache && rm ${_FONT}
 
 - link:
     ~/.config/nvim/init.lua: config/nvim/init.lua
