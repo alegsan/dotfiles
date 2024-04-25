@@ -39,6 +39,7 @@
       ripgrep:
       shellcheck:
       ssh-askpass:
+      snapd:
       tig:
       tree:
       u-boot-tools:
@@ -52,6 +53,9 @@
     - curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
   - aptget:
       nodejs:
+
+  - snap:
+      sleek:
 
 - shell:
   - pip3 install keep
