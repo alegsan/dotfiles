@@ -4,8 +4,10 @@
 
 - link:
     ~/workspace/git/u-boot/.envrc: workspace/git/u-boot/envrc
+    ~/workspace/git/barebox/.envrc: workspace/git/barebox/envrc
     ~/workspace/git/linux/.envrc: workspace/git/linux/envrc
 
 - shell:
   - cd ~/workspace/git/u-boot/ && direnv allow
+  - cd ~/workspace/git/barebox/ && direnv allow
   - cd ~/workspace/git/linux/ && direnv allow
