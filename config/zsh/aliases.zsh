@@ -68,7 +68,20 @@ function manipulate-firmware-image()
 function lgc-write-manipulated-firmware-image()
 {
 	local image="${1?please provide a image file}"
-	local device="${2?please provide a target device e.g. one of: pfcxxx,vtpctp,cc100,pfc300}"
+	local device="${2}"
+
+	if [[ -z "${device}" ]]; then
+	        if [[ "${image##*/}" =~ "^PFC-G2-|TP-|CC100-" ]]; then
+                        device=pfcxxx
+                elif [[ "${image##*/}" =~ "^PFC-300-|TP-|CC100-" ]]; then
+                        device=pfc300
+                fi
+        fi
+
+	if [[ -z "${device}" ]]; then
+                echo -n "Could not determine platform. Please speficify one of:\n pfcxxx,cc100,vtpctp or empty for no specific changes: "
+                read -r device
+        fi
 
 	manipulate-firmware-image "${image}" "${device}"
 	lgc-write-image "${image}"
