@@ -99,7 +99,7 @@ function lgc-switch-boot-medium()
 
 function lgc-export-platform-env-vars()
 {
-        local supported_platforms=("pfc-am335x-barebox" "pfc-am35xx-barebox" "pfcxxx" "vtpctp-barebox" "vtpctp" "cc100-barebox" "cc100" "pfc300")
+        local supported_platforms=("pfc-am335x-barebox" "pfc-am35xx-barebox" "pfcxxx" "vtpctp-barebox" "vtpctp" "cc100-barebox" "cc100" "pfc300" "pfc300-uboot")
 
 	case "$1" in
 		${supported_platforms[1]})
@@ -125,6 +125,9 @@ function lgc-export-platform-env-vars()
 			;;
 		${supported_platforms[8]})
 			export LG_PLATFORM=am6xxx
+			;;
+		${supported_platforms[9]})
+			export LG_PLATFORM=am6xxx_pfc300
 			;;
 		*)
 			echo "platform $1 is not supported."
@@ -175,10 +178,10 @@ function lgc-export-platform-env-vars()
         # pfc300
 	export LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME="firmware :: pfc :: pfc-300 :: main"
 	export LG_FIRMWARE_PFC300_BUILDNUMBER=latest
-	export LG_U_BOOT_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: next-am6xxx"
+	export LG_U_BOOT_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: master"
 	export LG_U_BOOT_AM6XXX_BUILDNUMBER=latest
-	export LG_U_BOOT_BACKUP_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: next-am6xxx"
+	export LG_U_BOOT_BACKUP_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: release_w01.03.00_00"
 	export LG_U_BOOT_BACKUP_AM6XXX_BUILDNUMBER=latest
-	export LG_KERNEL_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am6xxx_pfc_generic :: next-am6xxx"
+	export LG_KERNEL_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am6xxx_pfc_generic :: master-6.6.y_with-buildjob"
 	export LG_KERNEL_AM6XXX_BUILDNUMBER=latest
 }
