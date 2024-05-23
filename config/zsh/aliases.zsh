@@ -79,7 +79,7 @@ function lgc-write-manipulated-firmware-image()
         fi
 
 	if [[ -z "${device}" ]]; then
-                echo -n "Could not determine platform. Please speficify one of:\n pfcxxx,cc100,vtpctp or empty for no specific changes: "
+                echo -n "Could not determine platform. Please speficify one of:\n pfcxxx,cc100,vtpctp,pfc300 or empty for no specific changes: "
                 read -r device
         fi
 
