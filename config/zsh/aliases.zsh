@@ -197,7 +197,7 @@ function lgc-start-ssh-master()
 
         for host in "${hosts[@]}"; do
                 echo -n "Starting ssh master session for ${host}"...
-                ssh -nN "${host}"
+                ssh -nN -A "${host}"
                 ssh -nN "${host}".wago.local
                 echo "done"
         done
