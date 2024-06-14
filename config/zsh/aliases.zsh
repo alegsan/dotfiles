@@ -185,3 +185,20 @@ function lgc-export-platform-env-vars()
 	export LG_KERNEL_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am6xxx_pfc_generic :: master-6.6.y_with-buildjob"
 	export LG_KERNEL_AM6XXX_BUILDNUMBER=latest
 }
+
+function lgc-start-ssh-master()
+{
+        local hosts=( "testrack-alpha"
+                      "testrack-delta1"
+                      "lc012587"
+                      "lc014887"
+                      "lc012842"
+                    )
+
+        for host in "${hosts[@]}"; do
+                echo -n "Starting ssh master session for ${host}"...
+                ssh -nN "${host}"
+                ssh -nN "${host}".wago.local
+                echo "done"
+        done
+}

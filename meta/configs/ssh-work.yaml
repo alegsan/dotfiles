@@ -1,0 +1,3 @@
+- link:
+    ~/.ssh/config: ssh/config
+    ~/.local/bin/ssh-multiplex: local/bin/ssh-multiplex.sh

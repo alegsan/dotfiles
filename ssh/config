@@ -1,0 +1,5 @@
+Host testrack-* lc* *.wago.local
+        ControlPath /tmp/ssh-%r@%h:%p
+        ControlMaster auto
+        ControlPersist 60m
+        ServerAliveInterval 120
