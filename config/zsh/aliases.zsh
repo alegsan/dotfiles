@@ -202,3 +202,11 @@ function lgc-start-ssh-master()
                 echo "done"
         done
 }
+
+function lgc-pfc-enable-portforwarding()
+{
+        local dropbear_conf="/etc/dropbear/dropbear.conf"
+
+        echo -n "Enabling local port forwarding..."
+        lgc ssh -n X1 "sed -i -s 's|LOCAL_PORT_FORWARDING=false|LOCAL_PORT_FORWARDING=true|' ${dropbear_conf}" &> /dev/null && echo "done" || echo "failed"
+}
