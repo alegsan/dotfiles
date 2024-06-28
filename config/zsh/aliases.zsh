@@ -180,7 +180,7 @@ function lgc-export-platform-env-vars()
 	export LG_FIRMWARE_PFC300_BUILDNUMBER=latest
 	export LG_U_BOOT_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: master"
 	export LG_U_BOOT_AM6XXX_BUILDNUMBER=latest
-	export LG_U_BOOT_BACKUP_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: release_w01.03.00_00"
+	export LG_U_BOOT_BACKUP_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: release_w01.04.01_01"
 	export LG_U_BOOT_BACKUP_AM6XXX_BUILDNUMBER=latest
 	export LG_KERNEL_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: kernel :: am6xxx_pfc_generic :: master-6.6.y_with-buildjob"
 	export LG_KERNEL_AM6XXX_BUILDNUMBER=latest
