@@ -99,7 +99,10 @@ function lgc-switch-boot-medium()
 
 function lgc-export-platform-env-vars()
 {
-        local supported_platforms=("pfc-am335x-barebox" "pfc-am35xx-barebox" "pfcxxx" "vtpctp-barebox" "vtpctp" "cc100-barebox" "cc100" "pfc300" "pfc300-uboot")
+        local supported_platforms=("pfc-am335x-barebox" "pfc-am35xx-barebox" \
+                                        "pfcxxx" "vtpctp-barebox" "vtpctp" \
+                                        "cc100-barebox" "cc100" "pfc300" \
+                                        "pfc300-uboot" "pfc300-ems")
 
 	case "$1" in
 		${supported_platforms[1]})
@@ -125,9 +128,15 @@ function lgc-export-platform-env-vars()
 			;;
 		${supported_platforms[8]})
 			export LG_PLATFORM=am6xxx
+                        # unset possible configured env variable
+                        unset LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME
 			;;
 		${supported_platforms[9]})
 			export LG_PLATFORM=am6xxx_pfc300
+			;;
+		${supported_platforms[10]})
+			export LG_PLATFORM=am6xxx
+	                export LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME="firmware :: basesoftware :: am6xxx :: master"
 			;;
 		*)
 			echo "platform $1 is not supported."
@@ -176,7 +185,7 @@ function lgc-export-platform-env-vars()
 	export LG_KERNEL_STM32MP1_BUILDNUMBER=latest
 
         # pfc300
-	export LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME="firmware :: pfc :: pfc-300 :: main"
+	export LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME=${LG_FIRMWARE_PFC300_BUILDINFO_BUILDNAME:-"firmware :: pfc :: pfc-300 :: main"}
 	export LG_FIRMWARE_PFC300_BUILDNUMBER=latest
 	export LG_U_BOOT_AM6XXX_BUILDINFO_BUILDNAME="firmware :: pfc :: u-boot :: am6xxx_pfc300 :: master"
 	export LG_U_BOOT_AM6XXX_BUILDNUMBER=latest
