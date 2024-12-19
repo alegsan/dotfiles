@@ -120,3 +120,7 @@ preexec_functions+=echo_blank
 
 # enable direnv functionality
 eval "$(direnv hook zsh)"
+
+# keep command completion
+ fpath=($HOME/.zsh $fpath)
+ autoload -Uz compinit && compinit
