@@ -202,6 +202,7 @@ function lgc-start-ssh-master()
                       "lc012587"
                       "lc014887"
                       "lc012842"
+                      "lc0110384"
                     )
 
         for host in "${hosts[@]}"; do
