@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:$PATH
 
+# Check if brew is installed. If installed, then export the brew path
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/workspace/git/oh-my-zsh"
 
@@ -77,6 +82,7 @@ plugins=(
          zsh-autosuggestions
          zsh-syntax-highlighting
          fzf
+         asdf
          )
 
 source $ZSH/oh-my-zsh.sh
