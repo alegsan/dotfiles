@@ -32,3 +32,4 @@
 - link:
     ~/.local/bin/vim: /home/wago.local/u015645/.asdf/installs/neovim/nightly/bin/nvim
     ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua
+    ~/.config/nvim/lua/plugins/mason.lua: config/nvim/lua/plugins/mason.lua
