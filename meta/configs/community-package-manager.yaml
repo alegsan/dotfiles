@@ -1,0 +1,18 @@
+- sudo:
+    - aptget:
+        build-essential:
+        procps: 
+        curl:
+        file:
+        git:
+
+# Install brew
+- shell:
+    - 
+      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      stdin: true
+      stdout: true
+
+# Install asdf via brew
+- brew:
+    - asdf

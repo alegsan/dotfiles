@@ -5,6 +5,7 @@ git
 gnome-settings
 gnome-terminal
 goldwarden
-nvim
+community-package-manager
+lazyvim
 tig
 zsh

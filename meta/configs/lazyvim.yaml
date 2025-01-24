@@ -1,0 +1,34 @@
+- sudo:
+    - aptget:
+        git:
+        build-essential:
+        curl:
+        ripgrep:
+        fd-find:
+        luarocks:
+
+# We need newer versions of some packages as our current
+# Ubuntu version serves. Install them via an alternative
+# community package manager.
+- brew:
+    - fzf
+    - lazygit
+    - gh
+
+- cask:
+    - font-iosevka-nerd-font
+
+- asdf:
+    - plugin: neovim
+      url: https://github.com/richin13/asdf-neovim
+      global: nightly
+      versions:
+        - nightly
+
+- shell:
+    - _CONF_DIR=~/.config/nvim;
+      if [ ! -d ${_CONF_DIR} ] || [ -z "$ls -A ${CONF_DIR}" ]; then git clone https://github.com/LazyVim/starter ~/.config/nvim/; fi
+
+- link:
+    ~/.local/bin/vim: /home/wago.local/u015645/.asdf/installs/neovim/nightly/bin/nvim
+    ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua

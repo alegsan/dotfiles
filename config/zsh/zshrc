@@ -1,8 +1,17 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:$PATH
 
+# Check if brew is installed. If installed, then export the brew path
+if [ -d "/home/linuxbrew/.linuxbrew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/workspace/git/oh-my-zsh"
+
+# Export preffered editor
+export EDITOR=vim
+export GIT_EDITOR=vim
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,6 +86,7 @@ plugins=(
          zsh-autosuggestions
          zsh-syntax-highlighting
          fzf
+         asdf
          )
 
 source $ZSH/oh-my-zsh.sh
