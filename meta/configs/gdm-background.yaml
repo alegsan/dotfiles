@@ -1,13 +1,11 @@
-- create:
-  - ~/workspace/git/
-
-- shell:
-  - GIT_PATH="${HOME}/workspace/git/ubuntu-gdm-set-background" && test -d ${GIT_PATH} || git clone https://github.com/PRATAP-KUMAR/ubuntu-gdm-set-background.git ${GIT_PATH}
-
 - sudo:
+  - aptget:
+      gdm-settings:
+      libglib2.0-dev-bin:
+
   - shell:
+    # Currently i found no possibility t configure gdm settings programmetically.
+    # So at least install neccesarry applications to do this manually.
     - 
-      command: cd /home/wago.local/u015645/workspace/git/ubuntu-gdm-set-background && bash ubuntu-gdm-set-background --image /usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg
-      stdin: true
+      command: echo "Please open gdm-settings on your Desktop and change GDM settings"
       stdout: true
-      stderr: true
