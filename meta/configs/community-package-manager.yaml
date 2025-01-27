@@ -6,13 +6,18 @@
         file:
         git:
 
-# Install brew
 - shell:
-    - 
-      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      stdin: true
-      stdout: true
 
-# Install asdf via brew
-- brew:
-    - asdf
+    # Install brew if needed
+    - 
+      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL
+                https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      stdin: true
+
+    # Install brew gcc because it is recommended by brew. Export brew shell environment
+    # as this maybe the first call of this config and the shell is not aware of the
+    # environment variables of brew.
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gcc
+
+    # Install brew gcc because it is recommended by brew
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install asdf
