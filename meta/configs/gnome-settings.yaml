@@ -36,15 +36,16 @@
   # show weeknumbers in calendar
   - gsettings set org.gnome.desktop.calendar show-weekdate true
 
-  # dont show home folder on desktop
+  # dont show home and trash folder on desktop
   -
-    command: source /etc/os-release; if [[ "$VERSION_ID" == "22.04" ]]; then gsettings set org.gnome.shell.extensions.ding show-home false; fi
-  -
-    command: source /etc/os-release; if [[ "$VERSION_ID" == "20.04" ]]; then gsettings set org.gnome.shell.extensions.desktop-icons show-home false; fi
-
-  # dont show trash folder on desktop
-  -
-    command: source /etc/os-release; if [[ "$VERSION_ID" == "20.04" ]]; then gsettings set org.gnome.shell.extensions.desktop-icons show-trash false; fi
+    command: source /etc/os-release;
+              if dpkg --compare-versions "$VERSION_ID" "gt" "20.04"; then
+                gsettings set org.gnome.shell.extensions.ding show-home false;
+                gsettings set org.gnome.shell.extensions.ding show-trash false;
+              else
+                gsettings set org.gnome.shell.extensions.desktop-icons show-home false;
+                gsettings set org.gnome.shell.extensions.desktop-icons show-trash false;
+              fi
 
   # enable gpaste extension
   - gsettings set org.gnome.shell enabled-extensions "['GPaste@gnome-shell-extensions.gnome.org']"
@@ -71,8 +72,6 @@
   # disable tap to click on touchpad
   - gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 
-  # disable home and trash desktop icons
-  - gsettings set org.gnome.shell.extensions.desktop-icons show-home false
-
   # set background
-  - gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/matt-mcnulty-nyc-2nd-ave.jpg'
+  - gsettings set org.gnome.desktop.background picture-uri "file:///$HOME/workspace/git/dotfiles/meta/pictures/Einsamer_Raum_by_Orbite_Lambda.jpg"
+  - gsettings set org.gnome.desktop.background picture-uri-dark "file:///$HOME/workspace/git/dotfiles/meta/pictures/Einsamer_Raum_by_Orbite_Lambda.jpg"
