@@ -1,19 +1,12 @@
 - sudo:
-
-  - shell:
-    -
-      command: if [ ! -f "/etc/apt/sources.list.d/google-chrome.list" ]; then wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list; fi
-
   - aptget:
       bison:
-      ca-certificates:
-      ccache:
       curl:
       colordiff:
       fd-find:
       flex:
       git:
-      gnome-shell-extensions-gpaste:
+      gnome-shell-extension-gpaste:
       gnome-tweaks:
       gnupg:
       google-chrome-stable:
@@ -27,7 +20,6 @@
       lzop:
       net-tools:
       p7zip:
-      parallel:
       python3-dev:
       python3-git:
       python3-pip:
@@ -37,24 +29,14 @@
       python3-virtualenv:
       ripgrep:
       shellcheck:
-      ssh-askpass:
-      snapd:
       tig:
       tree:
       u-boot-tools:
-      vim-gtk:
       virtualenv:
-      xclip:
-      xmlstarlet:
-
-  - shell:
-    # install routine for nodejs, see https://deb.nodesource.com/
-    - curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash -
-  - aptget:
-      nodejs:
+      pipx:
 
   - snap:
       sleek:
 
 - shell:
-  - pip3 install keep
+  - pipx install keep
