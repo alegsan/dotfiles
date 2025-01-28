@@ -1,6 +1,0 @@
-- sudo:
-  - link:
-      /etc/apt/sources.list.d/ubuntu-fallback.list: etc/apt/sources.list.d/ubuntu-fallback.list
-
-- link:
-    ~/.local/bin/switch-apt-sources: local/bin/switch-apt-sources.sh
