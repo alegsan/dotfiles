@@ -1,16 +1,8 @@
-applications
 applications-work
 bin
 bin-work
-community-package-manager
 direnv-work
-gdm-background
 git-work
-gnome-settings
-gnome-terminal
 keepercommander
 lauterbach
-lazyvim
 ssh-work
-tig
-zsh
