@@ -3,9 +3,8 @@
       dconf-cli:
       uuid-runtime:
 
-- create:
-  - ~/workspace/git/
-
 - shell:
-  - test -d ~/workspace/git/gogh || git clone https://github.com/Gogh-Co/Gogh.git ~/workspace/git/gogh
-  - cd ~/workspace/git/gogh/installs && TERMINAL=gnome-terminal ./ayu-dark.sh
+  -
+    command: $(git rev-parse --show-toplevel)/meta/scripts/gnome-terminal.sh
+    stdout: true
+    stderr: true
