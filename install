@@ -1,0 +1,190 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Define constants for configuration files and directories
+BASE_CONFIG="base"
+CONFIG_SUFFIX=".yaml"
+
+META_DIR="meta"
+CONFIG_DIR="configs"
+PROFILES_DIR="profiles"
+
+DOTBOT_DIR="${META_DIR}/dotbot.git"
+DOTBOT_BIN="bin/dotbot"
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+PLUGIN_DIR="${META_DIR}/plugins"
+
+# Change to the base directory of the script and push it onto the directory stack
+pushd "${BASE_DIR}" >/dev/null
+
+# Ensure we return to the original directory on exit
+trap 'popd > /dev/null' EXIT
+
+# Check if we are in a git repository
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "Inside a git repository. Syncing submodules..."
+  # Sync the submodule URLs for the dotbot repository
+  git submodule sync --quiet --recursive "${DOTBOT_DIR}" || {
+    echo "Failed to sync submodules"
+    exit 1
+  }
+  # Initialize and update the dotbot submodule
+  git submodule update --init --recursive "${DOTBOT_DIR}" || {
+    echo "Failed to update submodules"
+    exit 1
+  }
+else
+  echo "Not inside a git repository. Skipping submodule sync."
+fi
+
+# Function to run Dotbot with a specified configuration
+function run_dotbot() {
+  local config=$1
+
+  # Create a temporary file to store the combined configuration
+  configFile="$(mktemp)" || {
+    echo "Failed to create temporary file"
+    exit 1
+  }
+  # Ensure temporary files and directories are cleaned up on exit
+  trap 'rm -f "${configFile}"; rm -rf "${pluginDir}"' RETURN
+
+  {
+    # Concatenate the base configuration file and the specific configuration file
+    cat "${BASE_DIR}/${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}" || {
+      echo "Failed to read base configuration"
+      exit 1
+    }
+    cat "${BASE_DIR}/${META_DIR}/${CONFIG_DIR}/${config}${CONFIG_SUFFIX}" || {
+      echo "Failed to read specific configuration"
+      exit 1
+    }
+  } >"${configFile}"
+
+  # Create a temporary directory to store plugin files
+  pluginDir="$(mktemp -d)" || {
+    echo "Failed to create temporary directory"
+    exit 1
+  }
+  # Copy all Python plugin files from each subdirectory to the temporary plugin directory
+  find "${BASE_DIR}/${PLUGIN_DIR}" -type f -name '*.py' -exec cp {} "${pluginDir}" \; || {
+    echo "Failed to copy plugin files"
+    exit 1
+  }
+
+  # Run the Dotbot tool with the combined configuration and plugin directory
+  "${BASE_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" -c "${configFile}" --plugin-dir "${pluginDir}" || {
+    echo "Dotbot execution failed"
+    exit 1
+  }
+}
+
+# Function to install configurations in standalone mode
+function install_standalone() {
+  # Loop through each argument passed to the script
+  for config in "$@"; do
+    if [[ -n "${config}" ]]; then
+      run_dotbot "${config}"
+    fi
+  done
+}
+
+# Function to install configurations based on a profile
+function install_profile() {
+  # Read the profile configurations from the specified profile file
+  CONFIGS=""
+  while IFS= read -r config; do
+    CONFIGS+=" ${config}"
+  done <"${META_DIR}/${PROFILES_DIR}/$1" || {
+    echo "Failed to read profile configurations"
+    exit 1
+  }
+
+  # Shift the positional parameters to remove the profile argument
+  shift
+
+  # Print the configurations to be used
+  echo "Using configurations:"
+  for config in ${CONFIGS}; do
+    echo "  - ${config}"
+  done
+
+  # Loop through each configuration and additional arguments
+  for config in ${CONFIGS} "$@"; do
+    if [[ -n "${config}" ]]; then
+      echo -e "\nConfiguring ${config}"
+      run_dotbot "${config}"
+    fi
+  done
+}
+
+# Function to print usage information
+function print_usage() {
+  cat <<EOF
+Usage: $0 {-s|--standalone|-p|--profile|-h|--help} [args...]
+
+  -s, --standalone    Run in standalone mode with specified configurations
+                      This mode allows you to run the script independently
+                      without relying on external profiles or settings.
+
+  -p, --profile       Run in profile mode with specified profile
+                      This mode requires a profile name as an argument.
+                      The script will use the settings defined in the profile.
+
+  -h, --help          Display this help message
+                      Use this option to get detailed information about
+                      the script usage and available options.
+EOF
+}
+
+# Parse options
+if ! OPTS=$(getopt -o sph --long standalone,profile,help -n 'parse-options' -- "$@"); then
+  echo "Failed to parse options." >&2
+  exit 1
+fi
+
+eval set -- "$OPTS"
+
+# Process the parsed options
+while true; do
+  case "$1" in
+  -s | --standalone)
+    shift
+    # Remove the -- argument if present
+    if [[ "$1" == "--" ]]; then shift; fi
+    install_standalone "$@" || {
+      echo "Standalone installation failed"
+      exit 1
+    }
+    exit 0
+    ;;
+  -p | --profile)
+    shift
+    # Remove the -- argument if present
+    if [[ "$1" == "--" ]]; then shift; fi
+    install_profile "$@" || {
+      echo "Profile installation failed"
+      exit 1
+    }
+    exit 0
+    ;;
+  -h | --help)
+    print_usage
+    exit 0
+    ;;
+  --)
+    shift
+    break
+    ;;
+  *)
+    break
+    ;;
+  esac
+done
+
+# Print usage information if no valid options are provided
+print_usage
+exit 1
