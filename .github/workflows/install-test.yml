@@ -15,14 +15,23 @@ jobs:
         with:
           submodules: true  # This will initialize and update submodules
 
-      - name: Update package manager
-        run: sudo apt-get update
+      - name: Set up environment
+        run: |
+          sudo apt-get update
 
-      - name: Upgrade installed packages
-        run: sudo apt-get upgrade -y
+          # Allow sudo without password for the current user
+          echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
 
-      - name: Allow sudo without password
-        run: echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
+          # Install Xvfb and other dependencies
+          # Explanation: Xvfb (X virtual framebuffer) is used to create a virtual display
+          # environment. This is necessary for running graphical applications or commands
+          # like `gsettings` that require a display server. By setting up Xvfb, we ensure
+          # that these commands can run in the CI environment without needing a physical display.
+          sudo apt-get install -y xvfb dbus-x11
+
+          # Set up and start Xvfb
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 &
 
       - name: Test install script itself with dummy configs
         run: ./install-test
