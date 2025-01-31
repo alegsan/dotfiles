@@ -75,6 +75,19 @@ function run_dotbot() {
     exit 1
   }
 
+  # Apply patches if any exist in the meta/patches directory
+  patchDir="${BASE_DIR}/${META_DIR}/patches"
+  if [ -d "${patchDir}" ]; then
+    for patch in "${patchDir}"/*.patch; do
+      [ -e "$patch" ] || continue
+      echo "Applying patch: ${patch}"
+      patch -d "${pluginDir}" -p1 <"${patch}" || {
+        echo "Failed to apply patch: ${patch}"
+        exit 1
+      }
+    done
+  fi
+
   # Run the Dotbot tool with the combined configuration and plugin directory
   "${BASE_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" -c "${configFile}" --plugin-dir "${pluginDir}" || {
     echo "Dotbot execution failed"
