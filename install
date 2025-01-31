@@ -20,7 +20,7 @@ PLUGIN_DIR="${META_DIR}/plugins"
 # Change to the base directory of the script and push it onto the directory stack
 pushd "${BASE_DIR}" >/dev/null
 
-# Ensure we return to the original directory on exit
+# Ensure we return to the original directory and clean up on exit
 trap 'popd > /dev/null' EXIT
 
 # Check if we are in a git repository
@@ -41,19 +41,26 @@ else
 fi
 
 # Function to run Dotbot with a specified configuration
-function run_dotbot() {
+run_dotbot() {
   local config=$1
 
   # Create a temporary file to store the combined configuration
-  configFile="$(mktemp)" || {
+  local configFile
+  configFile=$(mktemp) || {
     echo "Failed to create temporary file"
+    exit 1
+  }
+  # Create a temporary directory to store plugin files
+  local pluginDir
+  pluginDir=$(mktemp -d) || {
+    echo "Failed to create temporary directory"
     exit 1
   }
   # Ensure temporary files and directories are cleaned up on exit
   trap 'rm -f "${configFile}"; rm -rf "${pluginDir}"' RETURN
 
+  # Concatenate the base configuration file and the specific configuration file
   {
-    # Concatenate the base configuration file and the specific configuration file
     cat "${BASE_DIR}/${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}" || {
       echo "Failed to read base configuration"
       exit 1
@@ -64,11 +71,6 @@ function run_dotbot() {
     }
   } >"${configFile}"
 
-  # Create a temporary directory to store plugin files
-  pluginDir="$(mktemp -d)" || {
-    echo "Failed to create temporary directory"
-    exit 1
-  }
   # Copy all Python plugin files from each subdirectory to the temporary plugin directory
   find "${BASE_DIR}/${PLUGIN_DIR}" -type f -name '*.py' -exec cp {} "${pluginDir}" \; || {
     echo "Failed to copy plugin files"
@@ -76,7 +78,7 @@ function run_dotbot() {
   }
 
   # Apply patches if any exist in the meta/patches directory
-  patchDir="${BASE_DIR}/${META_DIR}/patches"
+  local patchDir="${BASE_DIR}/${META_DIR}/patches"
   if [ -d "${patchDir}" ]; then
     for patch in "${patchDir}"/*.patch; do
       [ -e "$patch" ] || continue
@@ -96,7 +98,7 @@ function run_dotbot() {
 }
 
 # Function to install configurations in standalone mode
-function install_standalone() {
+install_standalone() {
   # Loop through each argument passed to the script
   for config in "$@"; do
     if [[ -n "${config}" ]]; then
@@ -106,11 +108,11 @@ function install_standalone() {
 }
 
 # Function to install configurations based on a profile
-function install_profile() {
+install_profile() {
   # Read the profile configurations from the specified profile file
-  CONFIGS=""
+  local configs=()
   while IFS= read -r config; do
-    CONFIGS+=" ${config}"
+    configs+=("${config}")
   done <"${META_DIR}/${PROFILES_DIR}/$1" || {
     echo "Failed to read profile configurations"
     exit 1
@@ -121,12 +123,12 @@ function install_profile() {
 
   # Print the configurations to be used
   echo "Using configurations:"
-  for config in ${CONFIGS}; do
+  for config in "${configs[@]}"; do
     echo "  - ${config}"
   done
 
   # Loop through each configuration and additional arguments
-  for config in ${CONFIGS} "$@"; do
+  for config in "${configs[@]}" "$@"; do
     if [[ -n "${config}" ]]; then
       echo -e "\nConfiguring ${config}"
       run_dotbot "${config}"
@@ -135,7 +137,7 @@ function install_profile() {
 }
 
 # Function to print usage information
-function print_usage() {
+print_usage() {
   cat <<EOF
 Usage: $0 {-s|--standalone|-p|--profile|-h|--help} [args...]
 
