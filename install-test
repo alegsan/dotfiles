@@ -16,7 +16,7 @@ TEST_DIR=$(mktemp -d)
 trap 'rm -rf "${TEST_DIR}"' EXIT
 
 # Create necessary directories
-mkdir -p "${TEST_DIR}/meta/configs" "${TEST_DIR}/meta/profiles" "${TEST_DIR}/meta/dotbot.git" "${TEST_DIR}/meta/plugins"
+mkdir -p "${TEST_DIR}/meta/configs" "${TEST_DIR}/meta/profiles" "${TEST_DIR}/meta/dotbot.git" "${TEST_DIR}/meta/plugins" "${TEST_DIR}/meta/patches"
 
 # Create dummy base configuration
 cat <<'EOF' >"${TEST_DIR}/meta/base.yaml"
@@ -32,10 +32,18 @@ for config in config1 config2; do
 EOF
 done
 
+# Create dummy configuration file that uses the sudo plugin
+cat <<EOF >"${TEST_DIR}/meta/configs/config3.yaml"
+- sudo:
+    - shell:
+        - echo "config3 loaded"
+EOF
+
 # Create a profile with multiple configurations
 cat <<'EOF' >"${TEST_DIR}/meta/profiles/profile1"
 config1
 config2
+config3
 EOF
 
 # Create a configuration file that will fail
@@ -53,6 +61,7 @@ EOF
 cp ./install "${TEST_DIR}/install"
 cp -r ./meta/dotbot.git/* "${TEST_DIR}/meta/dotbot.git/"
 cp -r ./meta/plugins/* "${TEST_DIR}/meta/plugins/"
+cp -r ./meta/patches/* "${TEST_DIR}/meta/patches/"
 
 # Change to the test directory
 if ! pushd "${TEST_DIR}" >/dev/null; then
@@ -89,9 +98,9 @@ run_test() {
 }
 
 # Run positive tests
-run_test "standalone mode test" "./install -s config1 config2" false
+run_test "standalone mode test" "./install -s config1 config2 config3" false
 run_test "profile mode test" "./install -p profile1" false
-run_test "standalone mode test with long options" "./install --standalone config1 config2" false
+run_test "standalone mode test with long options" "./install --standalone config1 config2 config3" false
 run_test "profile mode test with long options" "./install --profile profile1" false
 
 # Run negative tests
