@@ -50,9 +50,9 @@ config_fail
 EOF
 
 # Copy the original install script and necessary files to the test directory
-cp /home/wago.local/u015645/workspace/git/dotfiles/install "${TEST_DIR}/install"
-cp -r /home/wago.local/u015645/workspace/git/dotfiles/meta/dotbot.git/* "${TEST_DIR}/meta/dotbot.git/"
-cp -r /home/wago.local/u015645/workspace/git/dotfiles/meta/plugins/* "${TEST_DIR}/meta/plugins/"
+cp ./install "${TEST_DIR}/install"
+cp -r ./meta/dotbot.git/* "${TEST_DIR}/meta/dotbot.git/"
+cp -r ./meta/plugins/* "${TEST_DIR}/meta/plugins/"
 
 # Change to the test directory
 if ! pushd "${TEST_DIR}" >/dev/null; then

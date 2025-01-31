@@ -1,4 +1,4 @@
-name: Test install script
+name: Install Test
 
 on:
   pull_request:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          submodules: true  # This will initialize and update submodules
 
       - name: Run install-test script
         run: ./install-test
