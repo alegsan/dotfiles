@@ -1,4 +1,4 @@
-name: Install Test
+name: CI
 
 on:
   pull_request:
@@ -15,5 +15,11 @@ jobs:
         with:
           submodules: true  # This will initialize and update submodules
 
-      - name: Run install-test script
+      - name: Allow sudo without password
+        run: echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
+
+      - name: Test install script itself with dummy configs
         run: ./install-test
+
+      - name: Test ubuntu-generic profile
+        run: ./install --profile ubuntu-generic
