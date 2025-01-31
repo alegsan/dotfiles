@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+# This script sets up a temporary testing environment for the install script.
+# It performs the following steps:
+# 1. Creates a temporary directory for testing and sets up a trap to clean it up on exit.
+# 2. Creates necessary directories within the temporary directory.
+# 3. Creates dummy configuration files and profiles for testing.
+# 4. Copies the original install script, Dotbot application, and plugins to the temporary directory.
+# 5. Changes to the temporary directory.
+# 6. Runs the install script in various modes (standalone and profile) and with different options.
+# 7. Returns to the original directory after tests are completed.
+# 8. Cleans up the temporary directory automatically upon script exit.
+
+# Create a temporary directory for testing
+TEST_DIR=$(mktemp -d)
+trap 'rm -rf "${TEST_DIR}"' EXIT
+
+# Create necessary directories
+mkdir -p "${TEST_DIR}/meta/configs" "${TEST_DIR}/meta/profiles" "${TEST_DIR}/meta/dotbot.git" "${TEST_DIR}/meta/plugins"
+
+# Create dummy base configuration
+cat <<'EOF' >"${TEST_DIR}/meta/base.yaml"
+- shell:
+    - echo "Base configuration loaded"
+EOF
+
+# Create dummy configuration files
+for config in config1 config2; do
+  cat <<EOF >"${TEST_DIR}/meta/configs/${config}.yaml"
+- shell:
+    - echo "${config^} loaded"
+EOF
+done
+
+# Create a profile with multiple configurations
+cat <<'EOF' >"${TEST_DIR}/meta/profiles/profile1"
+config1
+config2
+EOF
+
+# Create a configuration file that will fail
+cat <<'EOF' >"${TEST_DIR}/meta/configs/config_fail.yaml"
+- shell:
+    - exit 1
+EOF
+
+# Create a profile that includes the failing configuration
+cat <<'EOF' >"${TEST_DIR}/meta/profiles/profile_fail"
+config_fail
+EOF
+
+# Copy the original install script and necessary files to the test directory
+cp /home/wago.local/u015645/workspace/git/dotfiles/install "${TEST_DIR}/install"
+cp -r /home/wago.local/u015645/workspace/git/dotfiles/meta/dotbot.git/* "${TEST_DIR}/meta/dotbot.git/"
+cp -r /home/wago.local/u015645/workspace/git/dotfiles/meta/plugins/* "${TEST_DIR}/meta/plugins/"
+
+# Change to the test directory
+if ! pushd "${TEST_DIR}" >/dev/null; then
+  echo "Failed to change to test directory"
+  exit 1
+fi
+
+run_test() {
+  local description=$1
+  local command=$2
+  local should_fail=$3
+
+  echo "======================================"
+  echo "START: ${description}"
+  echo "Command: ${command}"
+  echo "======================================"
+  if ${command}; then
+    if [ "${should_fail}" = true ]; then
+      echo "END: ${description} - FAILED"
+      exit 1
+    else
+      echo "END: ${description} - PASSED"
+    fi
+  else
+    if [ "${should_fail}" = true ]; then
+      echo "END: ${description} - PASSED"
+    else
+      echo "END: ${description} - FAILED"
+      exit 1
+    fi
+  fi
+  echo "======================================"
+  echo
+}
+
+# Run positive tests
+run_test "standalone mode test" "./install -s config1 config2" false
+run_test "profile mode test" "./install -p profile1" false
+run_test "standalone mode test with long options" "./install --standalone config1 config2" false
+run_test "profile mode test with long options" "./install --profile profile1" false
+
+# Run negative tests
+run_test "negative test with non-existent configuration" "./install -s non_existent_config" true
+run_test "negative test with non-existent profile" "./install -p non_existent_profile" true
+run_test "negative test with failing configuration" "./install -s config_fail" true
+run_test "negative test with profile that includes failing configuration" "./install -p profile_fail" true
+
+# Return to the original directory
+if ! popd >/dev/null; then
+  echo "Failed to return to original directory"
+  exit 1
+fi
+
+# Cleanup is handled by the trap at the beginning

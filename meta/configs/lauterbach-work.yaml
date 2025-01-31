@@ -1,0 +1,8 @@
+- sudo:
+  - aptget:
+      wago-trace32:
+
+  - link:
+      /opt/trace32/config.t32:
+        force: true
+        path: opt/trace32/config_usb_proxy.t32

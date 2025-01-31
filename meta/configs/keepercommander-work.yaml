@@ -1,0 +1,7 @@
+- sudo:
+  - shell:
+    - pip3 install --upgrade pip
+
+- shell:
+  - pip3 install keepercommander
+  - keeper server EU

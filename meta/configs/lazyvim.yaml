@@ -10,15 +10,14 @@
 # We need newer versions of some packages as our current
 # Ubuntu version serves. Install them via an alternative
 # community package manager.
-- brew:
-    - fzf
-    - lazygit
-    - gh
-
-- cask:
-    - font-iosevka-nerd-font
+- shell:
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install fzf
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install lazygit
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gh
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install --force --cask font-iosevka-nerd-font
 
 - asdf:
+    - asdf_path: /home/linuxbrew/.linuxbrew/*/**/asdf.sh
     - plugin: neovim
       url: https://github.com/richin13/asdf-neovim
       global: nightly
@@ -30,6 +29,6 @@
       if [ ! -d ${_CONF_DIR} ] || [ -z "$ls -A ${CONF_DIR}" ]; then git clone https://github.com/LazyVim/starter ~/.config/nvim/; fi
 
 - link:
-    ~/.local/bin/vim: /home/wago.local/u015645/.asdf/installs/neovim/nightly/bin/nvim
+    ~/.local/bin/vim: $HOME/.asdf/installs/neovim/nightly/bin/nvim
     ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua
     ~/.config/nvim/lua/plugins/mason.lua: config/nvim/lua/plugins/mason.lua
