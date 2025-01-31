@@ -1,0 +1,14 @@
+diff --git a/sudo.py b/sudo.py
+index f9e40b7..c4983e8 100644
+--- a/sudo.py
++++ b/sudo.py
+@@ -57,7 +57,8 @@ class Sudo(dotbot.Plugin):
+             remove(conf_file)
+ 
+     def _find_dotbot(self):
+-        base = path.dirname(path.dirname(dotbot.__file__))
++        # Dotbot binary has now moved to a different location
++        base = path.dirname(path.dirname(path.dirname(dotbot.__file__)))
+         ret = path.join(base, 'bin', 'dotbot')
+         self._log.debug('sudo: dotbot app path: {}'.format(ret))
+         return ret
