@@ -15,6 +15,12 @@ jobs:
         with:
           submodules: true  # This will initialize and update submodules
 
+      - name: Update package manager
+        run: sudo apt-get update
+
+      - name: Upgrade installed packages
+        run: sudo apt-get upgrade -y
+
       - name: Allow sudo without password
         run: echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
 
