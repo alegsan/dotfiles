@@ -37,15 +37,8 @@
   - gsettings set org.gnome.desktop.calendar show-weekdate true
 
   # dont show home and trash folder on desktop
-  -
-    command: source /etc/os-release;
-              if dpkg --compare-versions "$VERSION_ID" "gt" "20.04"; then
-                gsettings set org.gnome.shell.extensions.ding show-home false;
-                gsettings set org.gnome.shell.extensions.ding show-trash false;
-              else
-                gsettings set org.gnome.shell.extensions.desktop-icons show-home false;
-                gsettings set org.gnome.shell.extensions.desktop-icons show-trash false;
-              fi
+  - gsettings set org.gnome.shell.extensions.ding show-home false;
+  - gsettings set org.gnome.shell.extensions.ding show-trash false;
 
   # enable gpaste extension
   - gsettings set org.gnome.shell enabled-extensions "['GPaste@gnome-shell-extensions.gnome.org']"

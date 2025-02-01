@@ -1,0 +1,8 @@
+dbus-x11
+xvfb
+gnome-shell
+gnome-session
+gnome-shell-extension-ubuntu-dock
+gnome-shell-extension-desktop-icons-ng
+dconf-cli
+

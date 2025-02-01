@@ -1,4 +1,4 @@
-name: Install Test
+name: CI
 
 on:
   pull_request:
@@ -7,13 +7,41 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true  # This will initialize and update submodules
 
-      - name: Run install-test script
+      - name: Cache apt packages
+        uses: actions/cache@v3
+        with:
+          path: /var/cache/apt
+          key: ${{ runner.os }}-apt-${{ hashFiles('.github/workflows/apt-packages.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-apt-
+
+      - name: Set up environment
+        run: |
+          sudo apt-get update && sudo apt-get install -y $(cat .github/workflows/apt-packages.txt)
+
+          # Allow sudo without password for the current user
+          echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
+
+          # Set up and start Xvfb
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 &
+
+          # Set up gnome environment
+          export XDG_RUNTIME_DIR=/run/user/$(id -u)
+          sudo mkdir -p $XDG_RUNTIME_DIR
+          sudo chown $(whoami):$(whoami) $XDG_RUNTIME_DIR
+          chmod 700 $XDG_RUNTIME_DIR
+
+      - name: Test install script itself with dummy configs
         run: ./install-test
+
+      - name: Test ubuntu-generic profile
+        run: ./install --profile ubuntu-generic
