@@ -15,18 +15,17 @@ For installing a predefined profile:
 ❯ cd ~/.dotfiles
 
 # see meta/profiles/ for available profiles
-❯ ./install-profile <profile> [<configs...>]
+❯ ./install --profile <profile>
 ```
 
 For installing single configurations:
 
 ```bash
 # see meta/configs/ for available configurations
-❯ ./install-standalone <configs...>
+❯ ./install --standalone <configs...>
 ```
 
-You can run these installation commands safely multiple times, if you think that helps with better installation.
-
+You can run these installation commands safely multiple times, if you think that helps :-).
 
 ## Contents
 
@@ -35,10 +34,11 @@ You can run these installation commands safely multiple times, if you think that
 ```
 ❯ tree meta/profiles
 
-meta/profiles
-├── notebook-hp-830-g5-privat
-├── notebook-lenovo-p15s-work
-└── pc-lenovo-thinkstation-work -> notebook-lenovo-p15s-work
+/meta/profiles
+├── ubuntu-generic
+└── ubuntu-work-additions
+
+1 directory, 2 files
 ```
 
 ### Dotbot configurations
@@ -46,76 +46,51 @@ meta/profiles
 ```
 ❯ tree meta/configs
 
-meta/configs
+/meta/configs
+├── applications-work.yaml
 ├── applications.yaml
-├── bin.yaml
+├── bin-work.yaml
+├── community-package-manager.yaml
+├── direnv-work.yaml
 ├── docker-apt.yaml
 ├── gdm-background.yaml
 ├── git-work.yaml
 ├── git.yaml
 ├── gnome-settings.yaml
 ├── gnome-terminal.yaml
-├── keepercommander.yaml
-├── lauterbach.yaml
-├── nvim.yaml
+├── gnucash.yaml
+├── keepercommander-work.yaml
+├── lauterbach-work.yaml
+├── lazyvim.yaml
+├── ssh-work.yaml
 ├── tig.yaml
 └── zsh.yaml
+
+1 directory, 18 files
 ```
 
 ### Dotfiles
 
 ```
-❯ tree -I meta -I install-profile -I install-standalone -I LICENSE -I README.md
+❯ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
 
-.
+
 ├── config
 │   ├── git
 │   │   ├── config
 │   │   └── config-work
 │   ├── nvim
-│   │   ├── init.lua
-│   │   ├── lua
-│   │   │   ├── config
-│   │   │   │   ├── auto-session.lua
-│   │   │   │   ├── bufferline.lua
-│   │   │   │   ├── cmp.lua
-│   │   │   │   ├── dashboard.lua
-│   │   │   │   ├── doge.lua
-│   │   │   │   ├── galaxyline.lua
-│   │   │   │   ├── lsp
-│   │   │   │   │   ├── go.lua
-│   │   │   │   │   ├── init.lua
-│   │   │   │   │   ├── lua.lua
-│   │   │   │   │   ├── null-ls.lua
-│   │   │   │   │   ├── python.lua
-│   │   │   │   │   ├── rust.lua
-│   │   │   │   │   ├── typescript.lua
-│   │   │   │   │   └── utils.lua
-│   │   │   │   ├── lspsaga.lua
-│   │   │   │   ├── lualine.lua
-│   │   │   │   ├── neogit.lua
-│   │   │   │   ├── neorg.lua
-│   │   │   │   ├── nlsp-settings.lua
-│   │   │   │   ├── sniprun.lua
-│   │   │   │   ├── symbols-outline.lua
-│   │   │   │   ├── telescope.lua
-│   │   │   │   ├── test.lua
-│   │   │   │   ├── treesitter.lua
-│   │   │   │   ├── vimspector.lua
-│   │   │   │   └── which-key.lua
-│   │   │   ├── defaults.lua
-│   │   │   ├── keymappings.lua
-│   │   │   ├── plugins.lua
-│   │   │   ├── settings.lua
-│   │   │   └── utils
-│   │   │       └── cheatsheet.lua
-│   │   └── stylua.toml
+│   │   └── lua
+│   │       └── plugins
+│   │           ├── colorscheme.lua
+│   │           └── mason.lua
 │   ├── tig
 │   │   └── config
 │   └── zsh
 │       ├── aliases.zsh
 │       ├── themes
 │       │   └── powerline.zsh-theme
+│       ├── zshenv-u015645
 │       └── zshrc
 ├── etc
 │   └── apt
@@ -123,8 +98,27 @@ meta/configs
 │           └── ubuntu-fallback.list
 ├── local
 │   └── bin
+│       ├── m-arm
+│       ├── m-arm64
+│       ├── ssh-multiplex.sh
 │       └── switch-apt-sources.sh
-└── opt
-    └── trace32
-        └── config_usb_proxy.t32
+├── opt
+│   └── trace32
+│       └── config_usb_proxy.t32
+├── ssh
+│   └── config
+├── usr
+│   └── local
+│       └── bin
+│           └── vzdump-hook-script
+└── workspace
+    └── git
+        ├── barebox
+        │   └── envrc
+        ├── linux
+        │   └── envrc
+        └── u-boot
+            └── envrc
+
+25 directories, 20 files
 ```
