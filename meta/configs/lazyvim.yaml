@@ -31,4 +31,4 @@
 - link:
     ~/.local/bin/vim: $HOME/.asdf/installs/neovim/nightly/bin/nvim
     ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua
-    ~/.config/nvim/lua/plugins/mason.lua: config/nvim/lua/plugins/mason.lua
+    ~/.config/nvim/lua/plugins/my-mason.lua: config/nvim/lua/plugins/mason.lua
