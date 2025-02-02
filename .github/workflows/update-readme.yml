@@ -1,0 +1,40 @@
+name: Update README on PR Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.merged == true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y tree sed
+
+      - name: Run generate_readme.sh script
+        run: bash meta/scripts/generate_readme.sh > README.md
+
+      - name: Commit and push changes if README.md is updated
+        run: |
+          if [ -n "$(git status --porcelain README.md)" ]; then
+            git add README.md
+            git commit -m 'Update README on PR merge'
+            git push origin master
+          else
+            echo "No changes to README.md"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
