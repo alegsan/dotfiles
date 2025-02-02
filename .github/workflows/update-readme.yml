@@ -27,7 +27,14 @@ jobs:
       - name: Run generate_readme.sh script
         run: bash meta/scripts/generate_readme.sh > README.md
 
+      - name: Pull latest changes from master
+        run: |
+          git fetch origin master
+          git merge origin/master
+
       - name: Commit and push changes if README.md is updated
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -n "$(git status --porcelain README.md)" ]; then
             git add README.md
@@ -36,5 +43,3 @@ jobs:
           else
             echo "No changes to README.md"
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
