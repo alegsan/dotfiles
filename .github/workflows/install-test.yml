@@ -15,7 +15,7 @@ jobs:
           submodules: true
 
       - name: Run install-script tests
-        run: ./install-test
+        run: ./meta/scripts/install-test
 
   ubuntu-generic-profile:
     runs-on: ubuntu-24.04
