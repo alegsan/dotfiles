@@ -1,0 +1,11 @@
+- shell:
+    - if ! command -v google-chrome || ! command -v google-chrome-stable; then
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb;
+      fi
+
+- sudo:
+    - shell:
+        - if ! command -v google-chrome || ! command -v google-chrome-stable; then
+            dpkg -i google-chrome-stable_current_amd64.deb;
+            rm google-chrome-stable_current_amd64.deb;
+          fi
