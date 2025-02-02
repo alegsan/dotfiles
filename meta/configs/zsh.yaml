@@ -19,6 +19,7 @@
         path: config/zsh/zshrc
 
     ~/.zshenv:
+        if: '[ -e config/zsh/zshenv-${USER} ]'
         force: true
         path: config/zsh/zshenv-${USER}
 

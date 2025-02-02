@@ -1,11 +1,15 @@
 - sudo:
   - aptget:
       gdm-settings:
+        ppa_source: ppa:ubuntuhandbook1/gdm-settings
       libglib2.0-dev-bin:
 
   - shell:
     # Currently i found no possibility t configure gdm settings programmetically.
     # So at least install neccesarry applications to do this manually.
     - 
-      command: echo "Please open gdm-settings on your Desktop and change GDM settings"
+      command: |
+                command -v gdm-settings &&
+                echo "Please open gdm-settings on your Desktop and change GDM settings" ||
+                echo "Error: failed to install gdm-settings"
       stdout: true
