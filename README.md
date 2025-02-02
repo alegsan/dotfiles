@@ -36,9 +36,10 @@ You can run these installation commands safely multiple times, if you think that
 
 /meta/profiles
 ├── ubuntu-generic
-└── ubuntu-work-additions
+├── ubuntu-work-additions
+└── ubuntu-work-additions-test
 
-1 directory, 2 files
+1 directory, 3 files
 ```
 
 ### Dotbot configurations
