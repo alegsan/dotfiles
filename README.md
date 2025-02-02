@@ -59,6 +59,7 @@ You can run these installation commands safely multiple times, if you think that
 ├── gnome-settings.yaml
 ├── gnome-terminal.yaml
 ├── gnucash.yaml
+├── google-chrome.yaml
 ├── keepercommander-work.yaml
 ├── lauterbach-work.yaml
 ├── lazyvim.yaml
@@ -66,7 +67,7 @@ You can run these installation commands safely multiple times, if you think that
 ├── tig.yaml
 └── zsh.yaml
 
-1 directory, 18 files
+1 directory, 19 files
 ```
 
 ### Dotfiles
