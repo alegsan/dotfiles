@@ -19,23 +19,25 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 ## Installation
 
 \`\`\`bash
-❯ git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
 \`\`\`
 
 For installing a predefined profile:
 
 \`\`\`bash
-❯ cd ~/.dotfiles
+cd ~/.dotfiles
 
 # see meta/profiles/ for available profiles
-❯ ./install --profile <profile>
+./install --profile <profile>
 \`\`\`
 
 For installing single configurations:
 
 \`\`\`bash
+cd ~/.dotfiles
+
 # see meta/configs/ for available configurations
-❯ ./install --standalone <configs...>
+./install --standalone <configs...>
 \`\`\`
 
 You can run these installation commands safely multiple times, if you think that helps :-).
@@ -45,7 +47,7 @@ You can run these installation commands safely multiple times, if you think that
 ### Profiles
 
 \`\`\`
-❯ tree meta/profiles
+tree meta/profiles
 
 $(print_tree "$ROOT_PATH/meta/profiles")
 \`\`\`
@@ -53,7 +55,7 @@ $(print_tree "$ROOT_PATH/meta/profiles")
 ### Dotbot configurations
 
 \`\`\`
-❯ tree meta/configs
+tree meta/configs
 
 $(print_tree "$ROOT_PATH/meta/configs")
 \`\`\`
@@ -61,7 +63,7 @@ $(print_tree "$ROOT_PATH/meta/configs")
 ### Dotfiles
 
 \`\`\`
-❯ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
+tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
 
 $(print_tree "$ROOT_PATH")
 \`\`\`
