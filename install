@@ -90,6 +90,9 @@ run_dotbot() {
     done
   fi
 
+  # Export basedir that can be referenced in configs
+  export DOTBOT_BASEDIR="${BASE_DIR}"
+
   # Run the Dotbot tool with the combined configuration and plugin directory
   "${BASE_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" -c "${configFile}" --plugin-dir "${pluginDir}" || {
     echo "Dotbot execution failed"

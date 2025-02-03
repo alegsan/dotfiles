@@ -129,7 +129,9 @@ function echo_blank() {
 preexec_functions+=echo_blank
 
 # enable direnv functionality
-eval "$(direnv hook zsh)"
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # keep command completion
  fpath=($HOME/.zsh $fpath)
