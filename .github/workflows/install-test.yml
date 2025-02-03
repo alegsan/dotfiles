@@ -39,11 +39,15 @@ jobs:
             gnome-shell-extension-ubuntu-dock \
             gnome-shell-extension-desktop-icons-ng \
             gnome-terminal \
+            gnome-settings-daemon \
+            gnome-control-center \
             gsettings-desktop-schemas \
             dconf-cli
 
           export DISPLAY=:99
+          sudo service dbus start
           Xvfb :99 -screen 0 1024x768x24 &
+          gnome-session &
 
           export XDG_RUNTIME_DIR=/run/user/$(id -u)
           sudo mkdir -p $XDG_RUNTIME_DIR
