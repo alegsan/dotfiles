@@ -71,4 +71,4 @@
   - gsettings set org.gnome.desktop.screensaver picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/Einsamer_Raum_by_Orbite_Lambda.jpg"
 
   # set style color
-  - gsettings set org.gnome.desktop.interface accent-color 'slate'
+  - gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
