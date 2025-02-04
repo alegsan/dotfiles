@@ -18,8 +18,11 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 
 ## Installation
 
+Checkout repository and change to the dotfiles directory:
+
 \`\`\`bash
-git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
+git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles && \\
+  cd ~/.dotfiles
 \`\`\`
 
 Installing a predefined profile:
