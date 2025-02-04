@@ -12,3 +12,4 @@
   - cd ~/workspace/git/u-boot/ && direnv allow
   - cd ~/workspace/git/barebox/ && direnv allow
   - cd ~/workspace/git/linux/ && direnv allow
+  - cd ~/workspace/git/labgrid.basesoftware/ && direnv allow
