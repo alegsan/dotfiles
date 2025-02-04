@@ -6,11 +6,7 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 ## Installation
 
 ```bash
-git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
-```
-
-```bash
-cd ~/.dotfiles
+git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles && cd ~/.dotfiles
 ```
 
 Installing a predefined profile:
