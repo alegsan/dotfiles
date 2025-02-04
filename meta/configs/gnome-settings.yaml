@@ -72,3 +72,6 @@
 
   # set style color
   - gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+  # set shortcuts
+  - gsettings set org.gnome.settings-daemon.plugins.media-keys calculator "['<Super>c']"
