@@ -6,6 +6,7 @@
     ~/workspace/git/u-boot/.envrc: workspace/git/u-boot/envrc
     ~/workspace/git/barebox/.envrc: workspace/git/barebox/envrc
     ~/workspace/git/linux/.envrc: workspace/git/linux/envrc
+    ~/workspace/git/labgrid.basesoftware/.envrc: workspace/git/labgrid.basesoftware/envrc
 
 - shell:
   - cd ~/workspace/git/u-boot/ && direnv allow

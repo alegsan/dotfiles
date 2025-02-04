@@ -1,0 +1,1 @@
+export PYTHONPATH=$PYTHONPATH:~/workspace/git/labgrid:~/workspace/git/labgrid.tools/
