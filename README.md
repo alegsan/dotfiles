@@ -40,7 +40,7 @@ tree meta/profiles
 ├── ubuntu-generic
 └── ubuntu-work-additions
 
-0 directories, 2 files
+1 directory, 2 files
 ```
 
 ### Dotbot configurations
@@ -69,7 +69,7 @@ tree meta/configs
 ├── tig.yaml
 └── zsh.yaml
 
-0 directories, 19 files
+1 directory, 19 files
 ```
 
 ### Dotfiles
@@ -123,5 +123,5 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
         └── u-boot
             └── envrc
 
-24 directories, 20 files
+25 directories, 20 files
 ```
