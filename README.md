@@ -9,25 +9,23 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
 ```
 
-For installing a predefined profile:
-
 ```bash
 cd ~/.dotfiles
+```
 
-# see meta/profiles/ for available profiles
+Installing a predefined profile:
+
+```bash
 ./install --profile <profile>
 ```
 
-For installing single configurations:
+Installing single (or multiple) configuration:
 
 ```bash
-cd ~/.dotfiles
-
-# see meta/configs/ for available configurations
-./install --standalone <configs...>
+./install --standalone <configs...> [<configs...>]
 ```
 
-You can run these installation commands safely multiple times, if you think that helps :-).
+You can run these installation commands safely multiple times, if you think that will help you :-).
 
 ## Contents
 
@@ -40,10 +38,10 @@ tree meta/profiles
 ├── ubuntu-generic
 └── ubuntu-work-additions
 
-1 directory, 2 files
+0 directories, 2 files
 ```
 
-### Dotbot configurations
+### Configurations
 
 ```
 tree meta/configs
@@ -69,7 +67,7 @@ tree meta/configs
 ├── tig.yaml
 └── zsh.yaml
 
-1 directory, 19 files
+0 directories, 19 files
 ```
 
 ### Dotfiles
@@ -123,5 +121,5 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
         └── u-boot
             └── envrc
 
-25 directories, 20 files
+24 directories, 20 files
 ```
