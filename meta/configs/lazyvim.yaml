@@ -1,11 +1,20 @@
 - sudo:
     - aptget:
-        git:
         build-essential:
+        cargo:
         curl:
-        ripgrep:
         fd-find:
+        git:
         luarocks:
+        nodejs:
+        npm:
+        python3-pynvim:
+        ripgrep:
+        xclip:
+
+    - shell:
+        - luarocks install --lua-version 5.1 tiktoken_core
+        - npm install -g neovim
 
 # We need newer versions of some packages as our current
 # Ubuntu version serves. Install them via an alternative
@@ -15,6 +24,7 @@
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install lazygit
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gh
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install --force --cask font-iosevka-nerd-font
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install lynx
 
 - asdf:
     - asdf_path: /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh

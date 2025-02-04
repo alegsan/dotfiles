@@ -54,5 +54,8 @@ jobs:
           sudo chown $(whoami):$(whoami) $XDG_RUNTIME_DIR
           chmod 700 $XDG_RUNTIME_DIR
 
+          # Wait for GNOME session to start
+          sleep 10
+
       - name: Run ubuntu-generic-profile tests
         run: ./install --profile ubuntu-generic

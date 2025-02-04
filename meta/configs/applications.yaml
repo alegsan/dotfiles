@@ -1,8 +1,8 @@
 - sudo:
   - aptget:
       bison:
-      curl:
       colordiff:
+      curl:
       fd-find:
       flex:
       git:
@@ -19,6 +19,7 @@
       lzop:
       net-tools:
       p7zip:
+      pipx:
       python3-dev:
       python3-git:
       python3-pip:
@@ -32,7 +33,6 @@
       tree:
       u-boot-tools:
       virtualenv:
-      pipx:
 
   - snap:
       sleek:
