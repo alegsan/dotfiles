@@ -22,25 +22,23 @@ based on [vsund dotfiles](https://github.com/vsund/dotfiles).
 git clone --recursive https://github.com/alegsan/dotfiles.git ~/.dotfiles
 \`\`\`
 
-For installing a predefined profile:
-
 \`\`\`bash
 cd ~/.dotfiles
+\`\`\`
 
-# see meta/profiles/ for available profiles
+Installing a predefined profile:
+
+\`\`\`bash
 ./install --profile <profile>
 \`\`\`
 
-For installing single configurations:
+Installing single (or multiple) configuration:
 
 \`\`\`bash
-cd ~/.dotfiles
-
-# see meta/configs/ for available configurations
-./install --standalone <configs...>
+./install --standalone <configs...> [<configs...>]
 \`\`\`
 
-You can run these installation commands safely multiple times, if you think that helps :-).
+You can run these installation commands safely multiple times, if you think that will help you :-).
 
 ## Contents
 
@@ -52,7 +50,7 @@ tree meta/profiles
 $(print_tree "$ROOT_PATH/meta/profiles")
 \`\`\`
 
-### Dotbot configurations
+### Configurations
 
 \`\`\`
 tree meta/configs
