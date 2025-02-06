@@ -36,6 +36,8 @@
 
   - snap:
       sleek:
+      notable:
+        classic: true
 
 - shell:
   - pipx install keep
