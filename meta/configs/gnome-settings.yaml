@@ -80,3 +80,6 @@
 
   # always show universal-access menu in background
   - gsettings set org.gnome.desktop.a11y always-show-universal-access-status true
+
+  # reduce default font size
+  - gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu Sans Mono 11'
