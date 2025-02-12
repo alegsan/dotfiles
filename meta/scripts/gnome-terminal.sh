@@ -73,7 +73,7 @@ create_temp_profile() {
 # Installs the Ayu Dark theme for GNOME Terminal
 install_theme() {
 	local script_apply="apply-colors.sh"
-	local script_theme="ayu-dark.sh"
+	local script_theme="catppuccin-mocha.sh"
 	local base_url="https://github.com/Gogh-Co/Gogh/raw/master"
 
 	# Download the apply-colors script to the /tmp directory
