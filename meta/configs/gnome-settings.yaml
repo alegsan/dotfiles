@@ -66,9 +66,10 @@
   - gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 
   # set background
-  - gsettings set org.gnome.desktop.background picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/Fuji_san_by_amaral.png"
-  - gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTBOT_BASEDIR/meta/pictures/Fuji_san_by_amaral.png"
-  - gsettings set org.gnome.desktop.screensaver picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/Fuji_san_by_amaral.png"
+  # https://github.com/orangci/walls-catppuccin-mocha
+  - gsettings set org.gnome.desktop.background picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
+  - gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
+  - gsettings set org.gnome.desktop.screensaver picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
 
   # set style color
   - gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
