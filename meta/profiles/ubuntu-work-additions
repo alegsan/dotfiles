@@ -1,5 +1,6 @@
 applications-work
 bin-work
+clang-format
 direnv-work
 git-work
 keepercommander-work
