@@ -1,12 +1,15 @@
 return {
-  -- add gruvbox
-  { "Shatur/neovim-ayu" },
+  {
+    "catppuccin/nvim",
+    opts = {
+      flavour = "mocha",
+    },
+  },
 
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "ayu",
+      colorscheme = "catppuccin",
     },
   },
 }

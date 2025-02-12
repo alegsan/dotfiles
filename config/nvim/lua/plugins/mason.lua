@@ -1,16 +1,19 @@
 return {
-	{
-		"williamboman/mason.nvim",
-		opts = {
-			ensure_installed = {
-				"pyright",
-				"bash-language-server",
-				"lua-language-server",
-				"ruff",
-				"yaml-language-server",
-				"clangd",
-				"shellcheck",
-			},
-		},
-	},
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "bash-language-server",
+        "clang-format",
+        "clangd",
+        "lua-language-server",
+        "pyright",
+        "ruff",
+        "shellcheck",
+        "shfmt",
+        "stylua",
+        "yaml-language-server",
+      },
+    },
+  },
 }
