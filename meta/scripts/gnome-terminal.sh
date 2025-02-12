@@ -70,10 +70,10 @@ create_temp_profile() {
 	log_info "Temporary profile created with UUID: ${new_profile_uuid}"
 }
 
-# Installs the Ayu Dark theme for GNOME Terminal
+# Installs the theme for GNOME Terminal
 install_theme() {
 	local script_apply="apply-colors.sh"
-	local script_theme="catppuccin-mocha.sh"
+	local script_theme="${1}"
 	local base_url="https://github.com/Gogh-Co/Gogh/raw/master"
 
 	# Download the apply-colors script to the /tmp directory
@@ -104,6 +104,7 @@ set_installed_theme_as_default_and_cleanup() {
 	local profile_list
 	local profile_uuid
 	local profile_name
+	local profile_name_to_set="${1}"
 
 	temp_profile_uuid=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
 	if [ -z "${temp_profile_uuid}" ]; then
@@ -131,17 +132,17 @@ set_installed_theme_as_default_and_cleanup() {
 	for profile_uuid in ${profile_list}; do
 		profile_name=$(gsettings get org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:"${profile_uuid}"/ \
 			visible-name | tr -d "'")
-		if [ "${profile_name}" = "Ayu Dark" ]; then
+		if [ "${profile_name}" = "${profile_name_to_set}" ]; then
 			if ! gsettings set org.gnome.Terminal.ProfilesList default "${profile_uuid}"; then
-				log_error "Failed to set Ayu Dark as the default profile"
+				log_error "Failed to set ${profile_name_to_set} as the default profile"
 				return 1
 			fi
-			log_info "Ayu Dark theme set as the default profile"
+			log_info "${profile_name_to_set} theme set as the default profile"
 			return 0
 		fi
 	done
 
-	log_error "Ayu Dark theme not found"
+	log_error "${profile_name_to_set} theme not found"
 	return 1
 }
 
@@ -160,8 +161,8 @@ set_terminal_settings() {
 
 # Main script execution
 create_temp_profile || exit 1
-install_theme || exit 1
-set_installed_theme_as_default_and_cleanup || exit 1
+install_theme "catppuccin-mocha.sh" || exit 1
+set_installed_theme_as_default_and_cleanup "Catppuccin Mocha" || exit 1
 set_terminal_settings || exit 1
 
 log_info "Script $(basename "$0") executed successfully"
