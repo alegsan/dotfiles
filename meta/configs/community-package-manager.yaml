@@ -24,3 +24,7 @@
     -
       command: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install asdf
       stdout: true
+
+    -
+      command: ls -l /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
+      stdout: true
