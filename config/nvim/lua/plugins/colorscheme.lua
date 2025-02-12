@@ -1,12 +1,15 @@
 return {
-	-- add neovim ayu dark plugin
-	{ "Shatur/neovim-ayu" },
+  {
+    "catppuccin/nvim",
+    opts = {
+      flavour = "mocha",
+    },
+  },
 
-	-- Configure LazyVim to load ayu colorscheme
-	{
-		"LazyVim/LazyVim",
-		opts = {
-			colorscheme = "ayu",
-		},
-	},
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin",
+    },
+  },
 }
