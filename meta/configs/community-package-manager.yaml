@@ -1,24 +1,24 @@
 - sudo:
     - aptget:
         build-essential:
-        procps: 
+        procps:
         curl:
         file:
         git:
 
 - shell:
-
     # Install brew
-    - 
-      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL
-                https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    -
+      command: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       stdin: true
       stdout: true
 
     # Install brew gcc because it is recommended by brew. Export brew shell environment
     # as this maybe the first call of this config and the shell is not aware of the
     # environment variables of brew.
-    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gcc
+    -
+      command: eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gcc
+      stdout: true
 
     # Install asdf
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install asdf

@@ -20,19 +20,13 @@
 # Ubuntu version serves. Install them via an alternative
 # community package manager.
 - shell:
-    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install fzf
-    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install lazygit
-    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install gh
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install fzf lazygit gh lynx
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install --force --cask font-iosevka-nerd-font
-    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" brew install lynx
 
-- asdf:
-    - asdf_path: /home/linuxbrew/.linuxbrew/opt/asdf/libexec/asdf.sh
-    - plugin: neovim
-      url: https://github.com/richin13/asdf-neovim
-      global: nightly
-      versions:
-        - nightly
+    - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        asdf plugin add neovim https://github.com/richin13/asdf-neovim &&
+        asdf install neovim nightly &&
+        asdf set -u neovim nightly
 
 - shell:
     - _CONF_DIR=~/.config/nvim;
