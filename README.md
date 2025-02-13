@@ -49,6 +49,7 @@ tree meta/configs
 ├── applications-work.yaml
 ├── applications.yaml
 ├── bin-work.yaml
+├── clang-format.yaml
 ├── community-package-manager.yaml
 ├── direnv-work.yaml
 ├── docker-apt.yaml
@@ -66,7 +67,7 @@ tree meta/configs
 ├── tig.yaml
 └── zsh.yaml
 
-1 directory, 19 files
+1 directory, 20 files
 ```
 
 ### Dotfiles
@@ -120,7 +121,8 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
         ├── linux
         │   └── envrc
         └── u-boot
+            ├── clang-format
             └── envrc
 
-26 directories, 21 files
+26 directories, 22 files
 ```
