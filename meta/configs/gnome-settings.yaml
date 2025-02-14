@@ -1,3 +1,17 @@
+- sudo:
+    - aptget:
+        gnome-shell-extensions:
+        gnome-shell-extension-prefs:
+
+- shell:
+    - pipx install gnome-extensions-cli --system-site-packages
+
+    - gnome-extensions-cli -F install todo.txt@bart.libert.gmail.com
+    - gnome-extensions-cli enable todo.txt@bart.libert.gmail.com
+
+    - gnome-extensions-cli -F install ddterm@amezin.github.com
+    - gnome-extensions-cli enable ddterm@amezin.github.com
+
 - shell:
     # show dock at bottom
     - gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
@@ -39,9 +53,6 @@
     # dont show home and trash folder on desktop
     - gsettings set org.gnome.shell.extensions.ding show-home false;
     - gsettings set org.gnome.shell.extensions.ding show-trash false;
-
-    # enable gpaste extension
-    - gsettings set org.gnome.shell enabled-extensions "['GPaste@gnome-shell-extensions.gnome.org']"
 
     # gpaste: increase history size
     - gsettings set org.gnome.GPaste max-history-size 1000
