@@ -25,7 +25,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y tree sed
 
       - name: Run generate_readme.sh script
-        run: bash meta/scripts/generate_readme.sh > README.md
+        run: bash meta/scripts/generate-readme.sh > README.md
 
       - name: Pull latest changes from master
         run: |
