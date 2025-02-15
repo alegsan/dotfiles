@@ -4,10 +4,17 @@
         gnome-shell-extension-prefs:
 
 - shell:
-    - pipx install gnome-extensions-cli --system-site-packages
+    -
+      command: pipx install gnome-extensions-cli --system-site-packages
+      stdout: true
 
-    - ~/.local/bin/gnome-extensions-cli -F install todo.txt@bart.libert.gmail.com
-    - ~/.local/bin/gnome-extensions-cli enable todo.txt@bart.libert.gmail.com
+    -
+      command: ~/.local/bin/gnome-extensions-cli -F install todo.txt@bart.libert.gmail.com
+      stdout: true
+
+    -
+      command: ~/.local/bin/gnome-extensions-cli enable todo.txt@bart.libert.gmail.com
+      stdout: true
 
 - shell:
     # show dock at bottom
