@@ -16,6 +16,10 @@
       command: ~/.local/bin/gnome-extensions-cli enable todo.txt@bart.libert.gmail.com
       stdout: true
 
+    -
+      command: ls -l ~/.local/bin/
+      stdout: true
+
 - shell:
     # show dock at bottom
     - gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
