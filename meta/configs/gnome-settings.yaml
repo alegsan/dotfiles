@@ -1,86 +1,105 @@
+- sudo:
+    - aptget:
+        gnome-shell-extensions:
+        gnome-shell-extension-prefs:
+
 - shell:
-  # show dock at bottom
-  - gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+    -
+      command: pipx install gnome-extensions-cli --system-site-packages
+      stdout: true
 
-  # hide dock when at least one window overlaps it
-  - gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+    -
+      command: ~/.local/bin/gnome-extensions-cli -F install todo.txt@bart.libert.gmail.com
+      stdout: true
 
-  # shrink dock as much as possible
-  - gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+    -
+      command: ~/.local/bin/gnome-extensions-cli enable todo.txt@bart.libert.gmail.com
+      stdout: true
 
-  # minimize docks icon size
-  - gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 26
+    -
+      command: ls -l ~/.local/bin/
+      stdout: true
 
-  # configure 10 workspaces
-  - gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
+- shell:
+    # show dock at bottom
+    - gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 
-  # disable dynamic workspaces
-  - gsettings set org.gnome.mutter dynamic-workspaces false
+    # hide dock when at least one window overlaps it
+    - gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 
-  # set keybindings for workspace switching
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1  "['<Primary>1']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2  "['<Primary>2']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3  "['<Primary>3']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4  "['<Primary>4']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5  "['<Primary>5']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6  "['<Primary>6']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-7  "['<Primary>7']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-8  "['<Primary>8']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-9  "['<Primary>9']"
-  - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Primary>0']"
+    # shrink dock as much as possible
+    - gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 
-  # resize with pressed super-key and right mouse button
-  - gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
-  - gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+    # minimize docks icon size
+    - gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 26
 
-  # show weeknumbers in calendar
-  - gsettings set org.gnome.desktop.calendar show-weekdate true
+    # configure 10 workspaces
+    - gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
 
-  # dont show home and trash folder on desktop
-  - gsettings set org.gnome.shell.extensions.ding show-home false;
-  - gsettings set org.gnome.shell.extensions.ding show-trash false;
+    # disable dynamic workspaces
+    - gsettings set org.gnome.mutter dynamic-workspaces false
 
-  # enable gpaste extension
-  - gsettings set org.gnome.shell enabled-extensions "['GPaste@gnome-shell-extensions.gnome.org']"
+    # set keybindings for workspace switching
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1  "['<Primary>1']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2  "['<Primary>2']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3  "['<Primary>3']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4  "['<Primary>4']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5  "['<Primary>5']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6  "['<Primary>6']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-7  "['<Primary>7']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-8  "['<Primary>8']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-9  "['<Primary>9']"
+    - gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Primary>0']"
 
-  # gpaste: increase history size
-  - gsettings set org.gnome.GPaste max-history-size 1000
+    # resize with pressed super-key and right mouse button
+    - gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
+    - gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 
-  # gpaste: increase element size when displaying items
-  - gsettings set org.gnome.GPaste element-size 100
+    # show weeknumbers in calendar
+    - gsettings set org.gnome.desktop.calendar show-weekdate true
 
-  # show weekday in clock pane
-  - gsettings set org.gnome.desktop.interface clock-show-weekday true
+    # dont show home and trash folder on desktop
+    - gsettings set org.gnome.shell.extensions.ding show-home false;
+    - gsettings set org.gnome.shell.extensions.ding show-trash false;
 
-  # new windows centered
-  - gsettings set org.gnome.mutter center-new-windows true
+    # gpaste: increase history size
+    - gsettings set org.gnome.GPaste max-history-size 1000
 
-  # show battery percentage
-  - gsettings set org.gnome.desktop.interface show-battery-percentage true
+    # gpaste: increase element size when displaying items
+    - gsettings set org.gnome.GPaste element-size 100
 
-  # disable natural scrolling
-  - gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
-  - gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false
+    # show weekday in clock pane
+    - gsettings set org.gnome.desktop.interface clock-show-weekday true
 
-  # disable tap to click on touchpad
-  - gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
+    # new windows centered
+    - gsettings set org.gnome.mutter center-new-windows true
 
-  # set background
-  # https://github.com/orangci/walls-catppuccin-mocha
-  - gsettings set org.gnome.desktop.background picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
-  - gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
-  - gsettings set org.gnome.desktop.screensaver picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
+    # show battery percentage
+    - gsettings set org.gnome.desktop.interface show-battery-percentage true
 
-  # set style color
-  - gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-  - gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-sage-dark'
-  - gsettings set org.gnome.desktop.interface icon-theme 'Yaru-sage'
+    # disable natural scrolling
+    - gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+    - gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false
 
-  # set shortcuts
-  - gsettings set org.gnome.settings-daemon.plugins.media-keys calculator "['<Super>c']"
+    # disable tap to click on touchpad
+    - gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 
-  # always show universal-access menu in background
-  - gsettings set org.gnome.desktop.a11y always-show-universal-access-status true
+    # set background
+    # https://github.com/orangci/walls-catppuccin-mocha
+    - gsettings set org.gnome.desktop.background picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
+    - gsettings set org.gnome.desktop.background picture-uri-dark "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
+    - gsettings set org.gnome.desktop.screensaver picture-uri "file://$DOTBOT_BASEDIR/meta/pictures/railroad-horizon.png"
 
-  # reduce default font size
-  - gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu Sans Mono 11'
+    # set style color
+    - gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    - gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-sage-dark'
+    - gsettings set org.gnome.desktop.interface icon-theme 'Yaru-sage'
+
+    # set shortcuts
+    - gsettings set org.gnome.settings-daemon.plugins.media-keys calculator "['<Super>c']"
+
+    # always show universal-access menu in background
+    - gsettings set org.gnome.desktop.a11y always-show-universal-access-status true
+
+    # reduce default font size
+    - gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu Sans Mono 11'
