@@ -54,6 +54,9 @@ jobs:
           sudo chown $(whoami):$(whoami) $XDG_RUNTIME_DIR
           chmod 700 $XDG_RUNTIME_DIR
 
+          # Ensure ~/.local/bin is in PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
           # Wait for GNOME session to start
           sleep 10
 
