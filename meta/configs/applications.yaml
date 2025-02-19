@@ -1,43 +1,54 @@
 - sudo:
-  - aptget:
-      bison:
-      colordiff:
-      curl:
-      fd-find:
-      flex:
-      git:
-      gnome-shell-extension-gpaste:
-      gnome-tweaks:
-      gnupg:
-      htop:
-      jq:
-      libncurses-dev:
-      libow-dev:
-      libsnappy-dev:
-      libsqlite3-dev:
-      libssl-dev:
-      lzop:
-      net-tools:
-      p7zip:
-      pipx:
-      python3-dev:
-      python3-git:
-      python3-pip:
-      python3-ply:
-      python3-setuptools:
-      python3-venv:
-      python3-virtualenv:
-      ripgrep:
-      shellcheck:
-      tig:
-      tree:
-      u-boot-tools:
-      virtualenv:
+    - aptget:
+        bison:
+        build-essential:
+        chrpath:
+        colordiff:
+        curl:
+        diffstat:
+        fd-find:
+        flex:
+        gawk:
+        gcc-multilib:
+        git:
+        gnome-shell-extension-gpaste:
+        gnome-tweaks:
+        gnupg:
+        htop:
+        jq:
+        libncurses-dev:
+        libow-dev:
+        libsdl1.2-dev:
+        libsnappy-dev:
+        libsqlite3-dev:
+        libssl-dev:
+        lzop:
+        net-tools:
+        p7zip:
+        pipx:
+        python3-dev:
+        python3-git:
+        python3-pip:
+        python3-ply:
+        python3-setuptools:
+        python3-venv:
+        python3-virtualenv:
+        ripgrep:
+        shellcheck:
+        socat:
+        texinfo:
+        tig:
+        tree:
+        u-boot-tools:
+        unzip:
+        virtualenv:
+        wget:
+        xterm:
 
-  - snap:
-      sleek:
-      notable:
-        classic: true
+    - snap:
+        sleek:
+        notable:
+          classic: true
 
 - shell:
-  - pipx install keep
+    - pipx install keep
