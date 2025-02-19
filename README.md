@@ -84,7 +84,9 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
 │   │   └── lua
 │   │       └── plugins
 │   │           ├── colorscheme.lua
-│   │           └── mason.lua
+│   │           ├── conform.lua
+│   │           ├── mason.lua
+│   │           └── snacks.lua
 │   ├── tig
 │   │   └── config
 │   └── zsh
@@ -124,5 +126,5 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
             ├── clang-format
             └── envrc
 
-26 directories, 22 files
+26 directories, 24 files
 ```
