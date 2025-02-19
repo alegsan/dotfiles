@@ -37,3 +37,5 @@
     ~/.local/bin/vim: $HOME/.asdf/installs/neovim/nightly/bin/nvim
     ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua
     ~/.config/nvim/lua/plugins/my-mason.lua: config/nvim/lua/plugins/mason.lua
+    ~/.config/nvim/lua/plugins/my-conform.lua: config/nvim/lua/plugins/conform.lua
+    ~/.config/nvim/lua/plugins/my-snacks.lua: config/nvim/lua/plugins/snacks.lua
