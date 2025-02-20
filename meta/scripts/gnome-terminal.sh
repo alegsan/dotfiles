@@ -77,20 +77,20 @@ install_theme() {
 	local base_url="https://github.com/Gogh-Co/Gogh/raw/master"
 
 	# Download the apply-colors script to the /tmp directory
-	if ! wget -q -O /tmp/${script_apply} ${base_url}/${script_apply}; then
+	if ! wget -q -O /tmp/"${script_apply}" "${base_url}/${script_apply}"; then
 		log_error "Failed to download ${script_apply}"
 		return 1
 	fi
 
 	# Download the theme script to the /tmp directory
-	if ! wget -q -O /tmp/${script_theme} ${base_url}/installs/${script_theme}; then
+	if ! wget -q -O /tmp/"${script_theme}" "${base_url}/installs/${script_theme}"; then
 		log_error "Failed to download ${script_theme}"
 		return 1
 	fi
 
 	# Execute the downloaded theme script with the necessary environment variables
-	if ! GOH_APPLY_SCRIPT=/tmp/${script_apply} TERMINAL=gnome-terminal GOGH_NONINTERACTIVE=1 \
-		bash /tmp/${script_theme}; then
+	if ! GOH_APPLY_SCRIPT=/tmp/"${script_apply}" TERMINAL=gnome-terminal GOGH_NONINTERACTIVE=1 \
+		bash /tmp/"${script_theme}"; then
 		log_error "Failed to apply the theme"
 		return 1
 	fi
@@ -160,9 +160,17 @@ set_terminal_settings() {
 }
 
 # Main script execution
+if [ -z "$1" ]; then
+	log_error "No theme specified"
+	exit 1
+fi
+
+THEME="$1"
+THEME_SCRIPT=$(echo "$THEME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+
 create_temp_profile || exit 1
-install_theme "catppuccin-mocha.sh" || exit 1
-set_installed_theme_as_default_and_cleanup "Catppuccin Mocha" || exit 1
+install_theme "${THEME_SCRIPT}.sh" || exit 1
+set_installed_theme_as_default_and_cleanup "${THEME}" || exit 1
 set_terminal_settings || exit 1
 
 log_info "Script $(basename "$0") executed successfully"

@@ -1,10 +1,9 @@
 - sudo:
-  - aptget:
-      dconf-cli:
-      uuid-runtime:
+    - aptget:
+        dconf-cli:
+        uuid-runtime:
 
 - shell:
-  -
-    command: $(git rev-parse --show-toplevel)/meta/scripts/gnome-terminal.sh
-    stdout: true
-    stderr: true
+    - command: $(git rev-parse --show-toplevel)/meta/scripts/gnome-terminal.sh "Ayu Dark"
+      stdout: true
+      stderr: true
