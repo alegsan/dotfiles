@@ -47,6 +47,7 @@
         xterm:
 
     - snap:
+        bitwarden:
         sleek:
         notable:
           classic: true
