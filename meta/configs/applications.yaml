@@ -11,6 +11,7 @@
         gawk:
         gcc-multilib:
         git:
+        gnome-shell-extension-manager:
         gnome-shell-extension-gpaste:
         gnome-tweaks:
         gnupg:
