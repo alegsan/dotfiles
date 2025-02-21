@@ -65,9 +65,10 @@ tree meta/configs
 ├── lazyvim.yaml
 ├── ssh-work.yaml
 ├── tig.yaml
+├── zsh-work.yaml
 └── zsh.yaml
 
-1 directory, 20 files
+1 directory, 21 files
 ```
 
 ### Dotfiles
@@ -94,7 +95,8 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
 │       ├── aliases.zsh
 │       ├── themes
 │       │   └── powerline.zsh-theme
-│       ├── zshenv-u015645
+│       ├── zshenv-personal
+│       ├── zshenv-work
 │       └── zshrc
 ├── etc
 │   └── apt
@@ -127,5 +129,5 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
             ├── clang-format
             └── envrc
 
-26 directories, 25 files
+26 directories, 26 files
 ```
