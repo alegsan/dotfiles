@@ -1,0 +1,4 @@
+- link:
+    ~/.zshenv:
+      force: true
+      path: config/zsh/zshenv-work
