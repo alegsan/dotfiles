@@ -23,6 +23,8 @@
         libsnappy-dev:
         libsqlite3-dev:
         libssl-dev:
+        libreoffice:
+        libreoffice-l10n-de:
         lzop:
         net-tools:
         p7zip:
