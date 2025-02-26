@@ -84,3 +84,9 @@
 
     # reduce default font size
     - gsettings set org.gnome.desktop.interface monospace-font-name 'Ubuntu Sans Mono 11'
+
+    # enable automatic-timezone
+    - gsettings set org.gnome.desktop.datetime automatic-timezone true
+
+    # set locale to german
+    - gsettings set org.gnome.system.locale region 'de_DE.UTF-8'
