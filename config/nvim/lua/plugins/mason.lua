@@ -7,6 +7,7 @@ return {
 				"clang-format",
 				"clangd",
 				"lua-language-server",
+				"luacheck",
 				"prettier",
 				"pyright",
 				"ruff",
