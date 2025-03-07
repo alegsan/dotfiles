@@ -26,7 +26,7 @@
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" asdf plugin add neovim https://github.com/richin13/asdf-neovim
     - eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)";
       if ! asdf where neovim > /dev/null 2>&1; then
-        asdf install neovim nightly && asdf set -u neovim nightly;
+      asdf install neovim nightly && asdf set -u neovim nightly;
       fi
 
 - shell:
@@ -35,6 +35,9 @@
 
 - link:
     ~/.local/bin/vim: $HOME/.asdf/installs/neovim/nightly/bin/nvim
+    ~/.config/nvim/lua/config/options.lua:
+      path: config/nvim/lua/config/options.lua
+      force: true
     ~/.config/nvim/lua/plugins/colorscheme.lua: config/nvim/lua/plugins/colorscheme.lua
     ~/.config/nvim/lua/plugins/my-mason.lua: config/nvim/lua/plugins/mason.lua
     ~/.config/nvim/lua/plugins/my-conform.lua: config/nvim/lua/plugins/conform.lua
