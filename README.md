@@ -89,7 +89,9 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
 │   │           ├── colorizer.lua
 │   │           ├── colorscheme.lua
 │   │           ├── conform.lua
+│   │           ├── lsp.lua
 │   │           ├── mason.lua
+│   │           ├── nvim-lint.lua
 │   │           └── snacks.lua
 │   ├── tig
 │   │   └── config
@@ -131,5 +133,5 @@ tree -I 'meta|install|install-test|LICENSE|README.md|dotbot.git'
             ├── clang-format
             └── envrc
 
-27 directories, 27 files
+27 directories, 29 files
 ```
