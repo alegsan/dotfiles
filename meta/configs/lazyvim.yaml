@@ -43,3 +43,5 @@
     ~/.config/nvim/lua/plugins/my-conform.lua: config/nvim/lua/plugins/conform.lua
     ~/.config/nvim/lua/plugins/my-snacks.lua: config/nvim/lua/plugins/snacks.lua
     ~/.config/nvim/lua/plugins/my-colorizer.lua: config/nvim/lua/plugins/colorizer.lua
+    ~/.config/nvim/lua/plugins/my-lsp.lua: config/nvim/lua/plugins/lsp.lua
+    ~/.config/nvim/lua/plugins/my-nvim-lint.lua: config/nvim/lua/plugins/nvim-lint.lua
