@@ -10,8 +10,48 @@ function lgc-export-place()
 
 function lgc-write-image()
 {
-	local image="${1?please provide a image path}"
-	local partition="${2}"
+	local -A opts
+	local image mode partition
+
+	zparseopts -D -E -A opts -- \
+		h -help \
+		-mode: \
+		p: -partition:
+
+	if [[ -n "${opts[-h]}" || -n "${opts[--help]}" ]]; then
+		echo "Usage: lgc-write-image [OPTIONS] IMAGE"
+		echo ""
+		echo "Write an image to SD card via sd-muxer."
+		echo ""
+		echo "Options:"
+		echo "  -h, --help              Show this help message"
+		echo "  --mode MODE             Write mode: dd (default) or bmap"
+		echo "  -p, --partition NUM     Target partition number (dd mode only)"
+		echo ""
+		echo "The function will:"
+		echo "  1. Power off the PFC"
+		echo "  2. Switch sd-mux to host"
+		echo "  3. Write the image using specified mode"
+		echo "  4. Switch sd-mux back to DUT"
+		echo "  5. Power on the PFC"
+		echo ""
+		echo "Examples:"
+		echo "  lgc-write-image image.wic              # Write using dd mode"
+		echo "  lgc-write-image image.wic -p 2         # Write to partition 2"
+		echo "  lgc-write-image image.wic --mode bmap  # Write using bmaptool"
+		return 0
+	fi
+
+	image="$1"
+	mode="${opts[--mode]:-default}"
+	partition="${opts[-p]:-${opts[--partition]}}"
+
+	[[ -z "$image" ]] && { echo "Error: please provide an image path\nUse --help for usage information"; return 1; }
+
+	if [[ "$mode" == "bmap" && -n "$partition" ]]; then
+		echo "Error: partition option is not available in bmap mode"
+		return 1
+	fi
 
 	echo "switch pfc off..."
 	lgcoff
@@ -19,8 +59,13 @@ function lgc-write-image()
 	echo "sd-mux to host..."
 	lgc sd-mux host
 
-	echo "write image...${partition:+to partition:$partition}"
-	lgc write-image "$image" ${partition:+-p $partition}
+	if [[ "$mode" == "bmap" ]]; then
+		echo "write image (bmap mode)..."
+		lgc write-image --mode bmaptool "$image"
+	else
+		echo "write image...${partition:+to partition:$partition}"
+		lgc write-image "$image" ${partition:+-p $partition}
+	fi
 
 	echo "sd-mux to dut..."
 	lgc sd-mux dut
