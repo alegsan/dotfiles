@@ -10,43 +10,87 @@ function lgc-export-place()
 
 function lgc-write-image()
 {
-	local -A opts
-	local image mode partition
-
-	zparseopts -D -E -A opts -- \
-		h -help \
-		-mode: \
-		p: -partition:
-
-	if [[ -n "${opts[-h]}" || -n "${opts[--help]}" ]]; then
-		echo "Usage: lgc-write-image [OPTIONS] IMAGE"
-		echo ""
-		echo "Write an image to SD card via sd-muxer."
-		echo ""
-		echo "Options:"
-		echo "  -h, --help              Show this help message"
-		echo "  --mode MODE             Write mode: dd (default) or bmap"
-		echo "  -p, --partition NUM     Target partition number (dd mode only)"
-		echo ""
-		echo "The function will:"
-		echo "  1. Power off the PFC"
-		echo "  2. Switch sd-mux to host"
-		echo "  3. Write the image using specified mode"
-		echo "  4. Switch sd-mux back to DUT"
-		echo "  5. Power on the PFC"
-		echo ""
-		echo "Examples:"
-		echo "  lgc-write-image image.wic              # Write using dd mode"
-		echo "  lgc-write-image image.wic -p 2         # Write to partition 2"
-		echo "  lgc-write-image image.wic --mode bmap  # Write using bmaptool"
-		return 0
+	if [[ $# -eq 0 ]]; then
+		echo "Error: please provide an image path"
+		echo "Use --help for usage information"
+		return 1
 	fi
 
-	image="$1"
-	mode="${opts[--mode]:-default}"
-	partition="${opts[-p]:-${opts[--partition]}}"
+	local image mode="default" partition
 
-	[[ -z "$image" ]] && { echo "Error: please provide an image path\nUse --help for usage information"; return 1; }
+	# Manual argument parsing
+	while [[ $# -gt 0 ]]; do
+		case "$1" in
+			-h|--help)
+				echo "Usage: lgc-write-image [OPTIONS] IMAGE"
+				echo ""
+				echo "Write an image to SD card via sd-muxer."
+				echo ""
+				echo "Options:"
+				echo "  -h, --help              Show this help message"
+				echo "  --mode MODE             Write mode: dd (default) or bmap"
+				echo "  -p, --partition NUM     Target partition number (dd mode only)"
+				echo ""
+				echo "The function will:"
+				echo "  1. Power off the PFC"
+				echo "  2. Switch sd-mux to host"
+				echo "  3. Write the image using specified mode"
+				echo "  4. Switch sd-mux back to DUT"
+				echo "  5. Power on the PFC"
+				echo ""
+				echo "Examples:"
+				echo "  lgc-write-image image.wic              # Write using dd mode"
+				echo "  lgc-write-image image.wic -p 2         # Write to partition 2"
+				echo "  lgc-write-image image.wic --mode bmap  # Write using bmaptool"
+				return 0
+				;;
+			--mode)
+				if [[ -z "$2" ]]; then
+					echo "Error: --mode requires an argument"
+					return 1
+				fi
+				mode="$2"
+				shift 2
+				;;
+			-p|--partition)
+				if [[ -z "$2" ]]; then
+					echo "Error: --partition requires an argument"
+					return 1
+				fi
+				partition="$2"
+				shift 2
+				;;
+			-*)
+				echo "Error: unknown option '$1'"
+				echo "Use --help for usage information"
+				return 1
+				;;
+			*)
+				if [[ -n "$image" ]]; then
+					echo "Error: multiple image paths provided"
+					return 1
+				fi
+				image="$1"
+				shift
+				;;
+		esac
+	done
+
+	if [[ -z "$image" ]]; then
+		echo "Error: please provide an image path"
+		echo "Use --help for usage information"
+		return 1
+	fi
+
+	if [[ ! -f "$image" ]]; then
+		echo "Error: image file not found: $image"
+		return 1
+	fi
+
+	if [[ "$mode" != "default" && "$mode" != "bmap" ]]; then
+		echo "Error: invalid mode '$mode'. Valid modes: dd (default), bmap"
+		return 1
+	fi
 
 	if [[ "$mode" == "bmap" && -n "$partition" ]]; then
 		echo "Error: partition option is not available in bmap mode"
