@@ -8,114 +8,118 @@ function lgc-export-place()
 	export LG_PLACE="$1"
 }
 
-function lgc-write-image()
-{
-	if [[ $# -eq 0 ]]; then
-		echo "Error: please provide an image path"
-		echo "Use --help for usage information"
-		return 1
+function lgc-write-image() {
+	# Early exit for help or no arguments
+	if [[ $# -eq 0 ]] || [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+		cat <<-'EOF'
+		Usage: lgc-write-image [OPTIONS] IMAGE
+
+		Write an image to SD card via sd-muxer.
+
+		Options:
+		  -h, --help              Show this help message
+		  --mode MODE             Write mode: dd (default) or bmap
+		  -p, --partition NUM     Target partition number (dd mode only)
+
+		The function will:
+		  1. Power off the PFC
+		  2. Switch sd-mux to host
+		  3. Write the image using specified mode
+		  4. Switch sd-mux back to DUT
+		  5. Power on the PFC
+
+		Examples:
+		  lgc-write-image image.wic              # Write using dd mode
+		  lgc-write-image image.wic -p 2         # Write to partition 2
+		  lgc-write-image image.wic --mode bmap  # Write using bmaptool
+		EOF
+		[[ $# -eq 0 ]] && return 1 || return 0
 	fi
 
 	local image mode="default" partition
 
-	# Manual argument parsing
+	# Parse arguments
 	while [[ $# -gt 0 ]]; do
 		case "$1" in
-			-h|--help)
-				echo "Usage: lgc-write-image [OPTIONS] IMAGE"
-				echo ""
-				echo "Write an image to SD card via sd-muxer."
-				echo ""
-				echo "Options:"
-				echo "  -h, --help              Show this help message"
-				echo "  --mode MODE             Write mode: dd (default) or bmap"
-				echo "  -p, --partition NUM     Target partition number (dd mode only)"
-				echo ""
-				echo "The function will:"
-				echo "  1. Power off the PFC"
-				echo "  2. Switch sd-mux to host"
-				echo "  3. Write the image using specified mode"
-				echo "  4. Switch sd-mux back to DUT"
-				echo "  5. Power on the PFC"
-				echo ""
-				echo "Examples:"
-				echo "  lgc-write-image image.wic              # Write using dd mode"
-				echo "  lgc-write-image image.wic -p 2         # Write to partition 2"
-				echo "  lgc-write-image image.wic --mode bmap  # Write using bmaptool"
-				return 0
-				;;
 			--mode)
-				if [[ -z "$2" ]]; then
-					echo "Error: --mode requires an argument"
-					return 1
-				fi
+				[[ -z "$2" ]] && { echo "Error: --mode requires an argument" >&2; return 1; }
 				mode="$2"
 				shift 2
 				;;
 			-p|--partition)
-				if [[ -z "$2" ]]; then
-					echo "Error: --partition requires an argument"
-					return 1
-				fi
+				[[ -z "$2" ]] && { echo "Error: --partition requires an argument" >&2; return 1; }
 				partition="$2"
 				shift 2
 				;;
 			-*)
-				echo "Error: unknown option '$1'"
-				echo "Use --help for usage information"
+				echo "Error: unknown option '$1'" >&2
+				echo "Use --help for usage information" >&2
 				return 1
 				;;
 			*)
-				if [[ -n "$image" ]]; then
-					echo "Error: multiple image paths provided"
-					return 1
-				fi
+				[[ -n "$image" ]] && { echo "Error: multiple image paths provided" >&2; return 1; }
 				image="$1"
 				shift
 				;;
 		esac
 	done
 
+	# Validate inputs
 	if [[ -z "$image" ]]; then
-		echo "Error: please provide an image path"
-		echo "Use --help for usage information"
+		echo "Error: please provide an image path" >&2
+		echo "Use --help for usage information" >&2
 		return 1
 	fi
 
 	if [[ ! -f "$image" ]]; then
-		echo "Error: image file not found: $image"
+		echo "Error: image file not found: $image" >&2
 		return 1
 	fi
 
 	if [[ "$mode" != "default" && "$mode" != "bmap" ]]; then
-		echo "Error: invalid mode '$mode'. Valid modes: dd (default), bmap"
+		echo "Error: invalid mode '$mode'. Valid modes: dd (default), bmap" >&2
 		return 1
 	fi
 
 	if [[ "$mode" == "bmap" && -n "$partition" ]]; then
-		echo "Error: partition option is not available in bmap mode"
+		echo "Error: partition option is not available in bmap mode" >&2
 		return 1
 	fi
 
+	# Execute operations with error checking
 	echo "switch pfc off..."
-	lgcoff
+	lgcoff || { echo "Error: failed to power off PFC" >&2; return 1; }
 
 	echo "sd-mux to host..."
-	lgc sd-mux host
+	lgc sd-mux host || { echo "Error: failed to switch sd-mux to host" >&2; lgcon; return 1; }
 
+	# Write image based on mode
+	local write_cmd write_status
 	if [[ "$mode" == "bmap" ]]; then
 		echo "write image (bmap mode)..."
 		lgc write-image --mode bmaptool "$image"
+		write_status=$?
 	else
-		echo "write image...${partition:+to partition:$partition}"
+		echo "write image...${partition:+ to partition $partition}"
 		lgc write-image "$image" ${partition:+-p $partition}
+		write_status=$?
 	fi
 
+	# Always switch back to dut, even if write failed
 	echo "sd-mux to dut..."
-	lgc sd-mux dut
+	lgc sd-mux dut || echo "Warning: failed to switch sd-mux back to dut" >&2
 
 	echo "switch pfc on..."
-	lgcon
+	lgcon || echo "Warning: failed to power on PFC" >&2
+
+	# Return write status
+	if [[ $write_status -ne 0 ]]; then
+		echo "Error: image write failed" >&2
+		return 1
+	fi
+
+	echo "Image write completed successfully"
+	return 0
 }
 
 function manipulate-firmware-image()
@@ -150,7 +154,7 @@ function manipulate-firmware-image()
 	sudo sed -i 's/\. \/etc\/profile.passwd/#\. \/etc\/profile.passwd/' \
 								"${profile_file}"
 
-	sudo umount "${tmp_mnt_point}"
+	sudo umount -d "${tmp_mnt_point}"
 	rmdir "${tmp_mnt_point}"
 }
 
