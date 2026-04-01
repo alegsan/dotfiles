@@ -87,6 +87,7 @@ plugins=(
          zsh-syntax-highlighting
          fzf
          asdf
+         pet
          )
 
 source $ZSH/oh-my-zsh.sh
@@ -136,3 +137,24 @@ fi
 # keep command completion
  fpath=($HOME/.zsh $fpath)
  autoload -Uz compinit && compinit
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
+
+# Copy selected pet snippet to clipboard
+function pet-copy() {
+  SNIPPET=$(pet search --query "$LBUFFER")
+  echo -n "$SNIPPET" | xclip -selection clipboard
+}
+zle -N pet-copy
+bindkey '^p' pet-copy  # Just Ctrl+p
